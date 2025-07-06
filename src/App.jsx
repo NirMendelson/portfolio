@@ -4,6 +4,7 @@ import Home from './components/Home'
 import Header from './components/Header'
 import { Routes, Route } from 'react-router-dom'
 import ProjectsPage from './components/ProjectsPage'
+import ProjectDetail from './components/ProjectDetail'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           </div>
         } />
         <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:slug" element={<ProjectDetail />} />
       </Routes>
     </>
   )

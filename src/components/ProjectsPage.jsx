@@ -1,35 +1,135 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const projects = [
   {
     title: 'Rubybeam',
     description: 'AI-powered lead generation for influencer agencies',
-    tags: ['AI Agents', 'LangChain', 'React'],
+    overview: 'Rubybeam is a platform that helps influencer agencies discover, enrich, and manage leads using AI-powered workflows. It automates research, outreach, and data enrichment, saving hours of manual work.',
+    technologies: ['React', 'LangChain', 'Node.js', 'Tailwind CSS'],
+    screenshots: [
+      { src: '/public/rubybeamScreenshot.png', caption: 'Homepage' },
+      { src: '/public/rubybeamFeatures.png', caption: 'Features' },
+      { src: '/public/rubybeamLeads1.png', caption: 'Leads' },
+      { src: '/public/rubybeamBrandOverview.png', caption: 'Brand Overview' },
+      { src: '/public/rubybeamOutreach.png', caption: 'Outreach' }
+    ],
+    status: 'In Progress',
+    lastUpdated: 'April 2024',
+    commits: 100,
+    tags: ['AI Agents', 'LangChain', 'Data Enrichment'],
     image: '/public/rubybeamScreenshot.png',
+    link: '#',
+  },
+  {
+    title: 'Global YouTuber',
+    description: 'Translate your videos to multiple languages, with your own voice',
+    overview: 'Global YouTuber enables creators to reach a worldwide audience by translating and dubbing videos using AI voice cloning.',
+    technologies: ['Vue', 'Whisper', 'Hugging Face'],
+    screenshots: [
+      { src: 'https://placehold.co/400x240?text=Main+UI', caption: 'Main interface' },
+      { src: 'https://placehold.co/400x240?text=Voice+Clone', caption: 'Voice cloning setup' }
+    ],
+    status: 'Shipped',
+    lastUpdated: 'March 2024',
+    commits: 80,
+    tags: ['Multimodal AI', 'Whisper', 'Hugging Face'],
+    image: 'https://placehold.co/200x140?text=Project+2',
     link: '#',
   },
   {
     title: 'MarketBuddy',
     description: 'AI-powered shared grocery orders for students',
-    tags: ['AI Agents', 'RAG', 'FastAPI', 'Vue'],
+    overview: 'MarketBuddy is an AI-powered platform that allows students to order groceries together and share the cost.',
+    technologies: ['RAG', 'Vector Search', 'Agents', 'FastAPI', 'PostgreSQL'],
+    screenshots: [
+      { src: 'https://placehold.co/400x240?text=MarketBuddy+Dashboard', caption: 'MarketBuddy Dashboard' },
+      { src: 'https://placehold.co/400x240?text=Order+Process', caption: 'Order process' },
+      { src: 'https://placehold.co/400x240?text=Analytics', caption: 'Analytics dashboard' }
+    ],
+    status: 'In Progress',
+    lastUpdated: 'February 2024',
+    commits: 50,
+    tags: ['RAG', 'Vector Search', 'Agents', 'FastAPI', 'PostgreSQL'],
     image: 'https://placehold.co/200x140?text=Project+2',
     link: '#',
   },
   {
     title: 'WikiQuest',
     description: 'Turn doomscrolling into discovery with AI-powered Wikipedia journeys.',
-    tags: ['Search', 'LLM', 'Flask'],
+    overview: 'WikiQuest is an AI-powered platform that allows users to explore Wikipedia articles in a more engaging and interactive way.',
+    technologies: ['RAG', 'LLM Apps', 'User Simulation', 'Wikipedia API'],
+    screenshots: [
+      { src: 'https://placehold.co/400x240?text=WikiQuest+Dashboard', caption: 'WikiQuest Dashboard' },
+      { src: 'https://placehold.co/400x240?text=Journey+Start', caption: 'Starting a journey' },
+      { src: 'https://placehold.co/400x240?text=Article+View', caption: 'Viewing an article' }
+    ],
+    status: 'Shipped',
+    lastUpdated: 'January 2024',
+    commits: 70,
+    tags: ['RAG', 'LLM Apps', 'User Simulation', 'Wikipedia API'],
     image: 'https://placehold.co/200x140?text=Project+3',
     link: '#',
   },
   {
     title: 'Altcast',
     description: 'The platform for commentary creators.',
-    tags: ['Extraction', 'NLP', 'Python'],
+    overview: 'Altcast is a platform that allows creators to commentate on videos and interact with their audience.',
+    technologies: ['Audio Syncing', 'React', 'Python'],
+    screenshots: [
+      { src: 'https://placehold.co/400x240?text=Altcast+Dashboard', caption: 'Altcast Dashboard' },
+      { src: 'https://placehold.co/400x240?text=Commentary+Creation', caption: 'Creating a commentary' },
+      { src: 'https://placehold.co/400x240?text=Live+Stream', caption: 'Live stream' }
+    ],
+    status: 'In Progress',
+    lastUpdated: 'December 2023',
+    commits: 30,
+    tags: ['Audio Syncing', 'React', 'Python'],
     image: 'https://placehold.co/200x140?text=Project+4',
     link: '#',
   },
+  {
+    title: 'YouTube Fantasy League',
+    description: 'Choose up and coming YouTubers and compete with friends',
+    overview: 'YouTube Fantasy League is a platform that allows users to create fantasy leagues based on YouTube videos.',
+    technologies: ['Gamification', 'Data Scraping', 'Node.js'],
+    screenshots: [
+      { src: 'https://placehold.co/400x240?text=Fantasy+League+Dashboard', caption: 'Fantasy League Dashboard' },
+      { src: 'https://placehold.co/400x240?text=League+Creation', caption: 'Creating a league' },
+      { src: 'https://placehold.co/400x240?text=Competition', caption: 'Competition page' }
+    ],
+    status: 'Shipped',
+    lastUpdated: 'November 2023',
+    commits: 60,
+    tags: ['Gamification', 'Data Scraping', 'Node.js'],
+    image: 'https://placehold.co/200x140?text=Project+4',
+    link: '#',
+  },
+  {
+    title: 'History-based Ideas Generator',
+    description: 'Simulate historical events and generate startup ideas',
+    overview: 'History-based Ideas Generator is a platform that allows users to simulate historical events and generate startup ideas based on those events.',
+    technologies: ['Simulation', 'LLM', 'Prompt Engineering', 'OpenAI', 'Idea Generation'],
+    screenshots: [
+      { src: 'https://placehold.co/400x240?text=Idea+Generator+Dashboard', caption: 'Idea Generator Dashboard' },
+      { src: 'https://placehold.co/400x240?text=Event+Simulation', caption: 'Simulating an event' },
+      { src: 'https://placehold.co/400x240?text=Idea+Generation', caption: 'Generating an idea' }
+    ],
+    status: 'In Progress',
+    lastUpdated: 'October 2023',
+    commits: 40,
+    tags: ['Simulation', 'LLM', 'Prompt Engineering', 'OpenAI', 'Idea Generation'],
+    image: 'https://placehold.co/200x140?text=Project+4',
+    link: '#',
+  }
 ];
+
+function slugify(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+}
 
 const ArrowIcon = ({ className }) => (
   <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" className={className}>
@@ -43,25 +143,30 @@ const ProjectsPage = () => {
     <div className="min-h-screen py-10 w-full">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto pt-10">
         {projects.map((project, idx) => (
-          <div key={idx} className="relative flex bg-white rounded-2xl shadow-lg border border-gray-300 p-6 gap-8 items-center transition-transform duration-200 group hover:scale-105 cursor-pointer">
+          <Link
+            to={`/projects/${slugify(project.title)}`}
+            key={idx}
+            className="relative flex bg-white rounded-2xl shadow-lg border border-gray-300 p-4 gap-6 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+          >
             <img src={project.image} alt={project.title} className="w-72 h-48 rounded-lg object-cover bg-gray-500 border border-gray-300" />
-            <div className="flex-1 flex flex-col justify-center gap-2 h-full items-center text-center">
-              <h3 className="text-2xl font-semibold">{project.title}</h3>
-              <p className="text-gray-600">{project.description}</p>
-              <div className="flex flex-wrap gap-2 my-2 items-center justify-center">
+            <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center">
+              <h3 className="text-xl font-semibold text-gray-800">{project.title}</h3>
+              <p className="text-gray-500 text-base">{project.description}</p>
+              <div className="flex flex-wrap gap-1 my-1 items-center justify-center">
                 {project.tags.map((tag, i) => (
-                  <span key={i} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-sm font-medium">{tag}</span>
+                  <span key={i} className="bg-gray-100 text-gray-700 px-2 py-1 rounded-lg text-xs font-medium">{tag}</span>
                 ))}
               </div>
             </div>
-            <a href={project.link} className="absolute bottom-4 right-4">
+            <span className="absolute bottom-4 right-4">
               <ArrowIcon className="text-slate-400 group-hover:text-slate-600 transition-colors duration-200" />
-            </a>
-          </div>
+            </span>
+          </Link>
         ))}
       </div>
     </div>
   );
 };
 
-export default ProjectsPage; 
+export default ProjectsPage;
+export { projects }; 

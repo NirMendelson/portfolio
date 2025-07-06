@@ -22,7 +22,7 @@ const Header = () => {
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
           <Link to="/" className="font-bold text-2xl text-gray-800 hover:text-gray-800">Nir.</Link>
           <nav className="flex items-center gap-6">
-            <Link to="/projects" className="text-gray-800 hover:text-gray-800 font-medium">Projects</Link>
+            <Link to="/projects" className="text-gray-800 hover:text-gray-800 font-semibold">Projects</Link>
             <Link to="/about" className="text-gray-800 hover:text-gray-800 font-medium">About</Link>
 
             <a href="https://github.com/NirMendelson" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl">
