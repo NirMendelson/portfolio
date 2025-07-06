@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { projects } from './ProjectsPage'; // We'll import the projects array from ProjectsPage
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../components/ui/carousel';
+import ReactMarkdown from 'react-markdown';
 // import { Badge } from '../components/ui/badge'; // Uncomment if badge exists
 // import { Separator } from '../components/ui/separator'; // Uncomment if separator exists
 
@@ -28,6 +29,14 @@ const ProjectDetail = () => {
   const commits = project?.commits || 100;
   const screenshots = project?.screenshots || [project?.image];
   const [current, setCurrent] = useState(0);
+  const [showFullOverview, setShowFullOverview] = useState(false);
+  const overviewText = project.overview || project.description || '';
+  const charLimit = 250;
+  const isTruncated = !showFullOverview && overviewText.length > charLimit;
+  const truncatedText = isTruncated ? overviewText.slice(0, charLimit) : overviewText;
+  const truncatedWithReadMore = isTruncated
+    ? truncatedText + '... ' + `<span class=\"text-blue-600 underline cursor-pointer\" style=\"font-size:inherit\" onclick=\"window.__readMoreClick && window.__readMoreClick()\" role=\"button\">Read More</span>`
+    : overviewText;
 
   if (!project) {
     return (
@@ -42,21 +51,44 @@ const ProjectDetail = () => {
     <main className="max-w-3xl mx-auto px-4 py-12 text-left">
       {/* Hero Section */}
       <h1 className="text-4xl font-semibold mb-6 tracking-tight text-gray-900 text-left">{project.title}</h1>
-      <div className="flex flex-wrap gap-3 mb-8">
-        <span className={badgeClass}>{status}</span>
-        <span className={badgeClass}>Last updated: {lastUpdated}</span>
-        <span className={badgeClass}>{commits} commits</span>
-      </div>
+
       {/* Cover Image/Card */}
 
       {/* Overview */}
-      <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-2 text-gray-900 text-left">Overview</h2>
-        <p className="text-lg text-gray-700 text-left">{project.overview || project.description}</p>
+      <section className="mb-4">
+        <h2 className="text-2xl font-semibold mb-2 text-gray-900 text-left">📌 Overview</h2>
+        <div className="prose prose-gray max-w-none" style={{ marginBottom: 0 }}>
+          {isTruncated ? (
+            <p style={{ marginBottom: 0 }}>
+              {truncatedText}
+              <span>...</span>
+              <span
+                className="text-blue-600 underline cursor-pointer"
+                style={{ fontSize: 'inherit' }}
+                onClick={() => setShowFullOverview(true)}
+              >
+                show more
+              </span>
+            </p>
+          ) : (
+            <ReactMarkdown components={{ p: ({node, ...props}) => <p style={{marginBottom: 0}} {...props} /> }}>
+              {overviewText}
+            </ReactMarkdown>
+          )}
+          {showFullOverview && overviewText.length > charLimit && (
+            <span
+              className="text-blue-600 underline cursor-pointer"
+              style={{ fontSize: 'inherit' }}
+              onClick={() => setShowFullOverview(false)}
+            >
+              show less
+            </span>
+          )}
+        </div>
       </section>
       {/* Technologies */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-2 text-gray-900 text-left">Technologies</h2>
+        <h2 className="text-2xl font-semibold mb-2 text-gray-900 text-left">💻 Technologies</h2>
         <div className="flex flex-wrap gap-3">
           {(project.technologies || project.tags).map((tech, i) => (
             <span key={i} className={badgeClass + ' text-base px-3 py-1'}>{tech}</span>
@@ -65,7 +97,7 @@ const ProjectDetail = () => {
       </section>
       {/* Screenshots Carousel */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-900 text-left">Screenshots</h2>
+        <h2 className="text-2xl font-semibold mb-4 text-gray-900 text-left">🖼️ Screenshots</h2>
         <div className="w-full">
           <Carousel className="w-full max-w-3xl mx-auto" setApi={api => {
             if (api) {
