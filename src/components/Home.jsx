@@ -43,9 +43,9 @@ const Home = () => {
         >
           Contact me
         </button>
-        <button className="bg-muted text-foreground rounded-lg px-8 py-2.5 text-lg font-medium hover:bg-accent transition">
+        <a href="/Nir_Mendelson_CV.pdf" download target="_blank" rel="noopener noreferrer" className="bg-muted text-foreground rounded-lg px-8 py-2.5 text-lg font-medium hover:bg-accent transition inline-block">
           Download CV
-        </button>
+        </a>
         {showContactBar && (
           <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 flex items-center justify-center w-max z-20">
             <div className="flex gap-6 px-8 py-3 rounded-full border border-border shadow bg-card/80 backdrop-blur">
