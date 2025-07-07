@@ -1,9 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { Sun, Moon } from 'lucide-react';
 
 const Header = () => {
   const [copied, setCopied] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  // On mount, set theme from localStorage or system
+  useEffect(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      setIsDark(true);
+    } else {
+      document.documentElement.classList.remove('dark');
+      setIsDark(false);
+    }
+  }, []);
+
+  // Toggle dark mode
+  const handleToggleDark = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
+    if (newDark) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
 
   const handleCopyEmail = async (e) => {
     e.preventDefault();
@@ -18,13 +45,22 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full bg-white/80 backdrop-blur z-50 border-b border-gray-100">
+      <header className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur z-50 border-b border-border">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
-          <Link to="/" className="font-bold text-2xl text-gray-800 hover:text-gray-800">Nir.</Link>
+          <div className="flex items-center gap-2">
+            <Link to="/" className="font-bold text-2xl text-foreground hover:text-foreground">Nir.</Link>
+          </div>
           <nav className="flex items-center gap-6">
-            <Link to="/projects" className="text-gray-800 hover:text-gray-800 font-semibold">Projects</Link>
-            <Link to="/about" className="text-gray-800 hover:text-gray-800 font-medium">About</Link>
-
+            <Link to="/projects" className="text-foreground hover:text-foreground font-semibold">Projects</Link>
+            <Link to="/about" className="text-foreground hover:text-foreground font-medium">About</Link>
+            <button
+              aria-label="Toggle dark mode"
+              onClick={handleToggleDark}
+              className="text-xl text-foreground dark:text-foreground focus:outline-none bg-transparent border-none p-0 hover:text-yellow-500 transition-colors duration-200"
+              style={{ background: 'none', border: 'none' }}
+            >
+              {isDark ? <Moon strokeWidth={1.5} /> : <Sun strokeWidth={1.5} />}
+            </button>
             <a href="https://github.com/NirMendelson" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl">
               <FaGithub />
             </a>

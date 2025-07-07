@@ -25,7 +25,7 @@ const Home = () => {
         <br />
         <span>and I love to build <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">AI products</span></span>
       </h1>
-      <p className="text-gray-600 text-xl my-8 px-40">
+      <p className="text-muted-foreground text-xl my-8 px-40">
         I have a strong foundation in AI, product development, and full-stack web technologies, and I build intelligent, user-focused tools that solve real-world problems.
       </p>
       <div className="flex gap-6 relative" style={{ minHeight: '56px' }}>
@@ -43,12 +43,12 @@ const Home = () => {
         >
           Contact me
         </button>
-        <button className="bg-gray-100 text-gray-900 rounded-lg px-8 py-2.5 text-lg font-medium hover:bg-gray-200 transition">
+        <button className="bg-muted text-foreground rounded-lg px-8 py-2.5 text-lg font-medium hover:bg-accent transition">
           Download CV
         </button>
         {showContactBar && (
           <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 flex items-center justify-center w-max z-20">
-            <div className="flex gap-6 px-8 py-3 rounded-full border border-gray-200 shadow bg-white/80 backdrop-blur">
+            <div className="flex gap-6 px-8 py-3 rounded-full border border-border shadow bg-card/80 backdrop-blur">
               <a
                 href="https://www.linkedin.com/in/nirmendelson/"
                 target="_blank"

@@ -152,26 +152,26 @@ const ArrowIcon = ({ className }) => (
 
 const ProjectsPage = () => {
   return (
-    <div className="min-h-screen py-10 w-full">
+    <div className="min-h-screen py-10 w-full bg-background text-foreground">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto pt-10">
         {projects.map((project, idx) => (
           <Link
             to={`/projects/${slugify(project.title)}`}
             key={idx}
-            className="relative flex bg-white rounded-2xl shadow-lg border border-gray-300 p-4 gap-6 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+            className="relative flex bg-card rounded-2xl shadow-lg border border-border p-4 gap-6 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
           >
-            <img src={project.image} alt={project.title} className="w-72 h-48 rounded-lg object-cover bg-gray-500 border border-gray-300" />
+            <img src={project.image} alt={project.title} className="w-72 h-48 rounded-lg object-cover bg-muted border border-border" />
             <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center">
-              <h3 className="text-xl font-semibold text-gray-800">{project.title}</h3>
-              <p className="text-gray-500 text-base">{project.description}</p>
+              <h3 className="text-xl font-semibold text-card-foreground">{project.title}</h3>
+              <p className="text-muted-foreground text-base">{project.description}</p>
               <div className="flex flex-wrap gap-1 my-1 items-center justify-center">
                 {project.tags.map((tag, i) => (
-                  <span key={i} className="bg-gray-100 text-gray-700 px-2 py-1 rounded-lg text-xs font-medium">{tag}</span>
+                  <span key={i} className="bg-muted text-muted-foreground px-2 py-1 rounded-lg text-xs font-medium">{tag}</span>
                 ))}
               </div>
             </div>
             <span className="absolute bottom-4 right-4">
-              <ArrowIcon className="text-slate-400 group-hover:text-slate-600 transition-colors duration-200" />
+              <ArrowIcon className="text-muted-foreground group-hover:text-foreground transition-colors duration-200" />
             </span>
           </Link>
         ))}

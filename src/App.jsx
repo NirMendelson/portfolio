@@ -12,7 +12,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={
-          <div className="App min-h-screen flex items-center justify-center bg-white text-gray-800">
+          <div className="App min-h-screen flex items-center justify-center bg-background text-foreground">
             <Home />
           </div>
         } />
