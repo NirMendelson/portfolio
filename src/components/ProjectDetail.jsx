@@ -43,15 +43,21 @@ const ProjectDetail = () => {
 
   const handlePrev = () => {
     if (!carouselApi) return;
-    const newIdx = Math.max(0, current - slidesPerPage);
+    const currentPage = Math.floor(current / slidesPerPage);
+    const prevPage = Math.max(0, currentPage - 1);
+    const newIdx = prevPage * slidesPerPage;
     carouselApi.scrollTo(newIdx);
+    setCurrent(newIdx);
   };
 
   const handleNext = () => {
     if (!carouselApi) return;
-    // Ensure we don't go past the last slide
-    const newIdx = Math.min(totalSlides - 1, current + slidesPerPage);
+    const currentPage = Math.floor(current / slidesPerPage);
+    const lastPage = Math.ceil(totalSlides / slidesPerPage) - 1;
+    const nextPage = Math.min(lastPage, currentPage + 1);
+    const newIdx = nextPage * slidesPerPage;
     carouselApi.scrollTo(newIdx);
+    setCurrent(newIdx);
   };
 
   if (!project) {
@@ -141,12 +147,15 @@ const ProjectDetail = () => {
           </Carousel>
           {/* Dot navigation */}
           <div className="flex justify-center mt-4 gap-2">
-            {Array.from({ length: Math.ceil(screenshots.length / 3) }).map((_, idx) => (
-              <span
-                key={idx}
-                className={`w-3 h-3 rounded-full ${current === idx * 3 ? 'bg-foreground' : 'bg-muted'} inline-block`}
-              />
-            ))}
+            {Array.from({ length: Math.ceil(screenshots.length / slidesPerPage) }).map((_, idx) => {
+              const isActive = Math.floor(current / slidesPerPage) === idx;
+              return (
+                <span
+                  key={idx}
+                  className={`w-3 h-3 rounded-full ${isActive ? 'bg-foreground' : 'bg-muted'} inline-block`}
+                />
+              );
+            })}
           </div>
         </div>
       </section>
