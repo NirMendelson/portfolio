@@ -48,7 +48,7 @@ const Header = () => {
       <header className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur z-50 border-b border-border">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-3">
           <div className="flex items-center gap-2">
-            <Link to="/" className="font-bold text-2xl text-foreground hover:text-foreground">Nir.</Link>
+            <Link to="/" className="font-bold text-2xl text-foreground hover:text-foreground mx-2">Nir.</Link>
           </div>
           <nav className="flex items-center gap-6">
             <Link to="/projects" className="text-foreground hover:text-foreground font-semibold">Projects</Link>

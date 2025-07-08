@@ -153,7 +153,9 @@ const ArrowIcon = ({ className }) => (
 const ProjectsPage = () => {
   return (
     <div className="min-h-screen py-10 w-full bg-background text-foreground">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto pt-10">
+      <h1 className="text-4xl font-semibold mt-6 mb-4 text-foreground text-left max-w-7xl mx-auto ">Projects</h1>
+      <div className="h-px bg-border border-0 max-w-7xl mx-auto mb-4" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
         {projects.map((project, idx) => (
           <Link
             to={`/projects/${slugify(project.title)}`}
