@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { FaLinkedin } from 'react-icons/fa';
+import { projects } from './ProjectsPage';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [showContactBar, setShowContactBar] = useState(false);
@@ -48,8 +50,8 @@ const Home = () => {
             Download CV
           </a>
           {showContactBar && (
-            <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 flex items-center justify-center w-max z-20">
-              <div className="flex gap-6 px-8 py-3 rounded-full border border-border shadow bg-card/80 backdrop-blur">
+            <div className="absolute left-1/2 -translate-x-1/2 -ml-[6px] top-full mt-4 flex items-center justify-center w-max z-20">
+              <div className="flex gap-6 px-8 py-3 rounded-full border border-border dark:border-gray-400 shadow bg-card/80 backdrop-blur">
                 <a
                   href="https://www.linkedin.com/in/nirmendelson/"
                   target="_blank"
@@ -93,7 +95,7 @@ const Home = () => {
         </div>
         <p className="text-lg mb-6">If you're building something interesting, I'd love to hear about it.</p>
         {/* Contact Capsule (reuse) */}
-        <div className="flex gap-6 px-8 py-3 rounded-full border border-border shadow bg-card/80 backdrop-blur items-center w-max">
+        <div className="flex gap-6 px-8 py-3 rounded-full border border-border dark:border-gray-400 shadow bg-card/80 backdrop-blur items-center w-max">
           <a
             href="https://www.linkedin.com/in/nirmendelson/"
             target="_blank"
@@ -117,6 +119,37 @@ const Home = () => {
             )}
           </a>
         </div>
+      </section>
+      {/* Projects Preview Section */}
+      <section className="w-full max-w-6xl mt-20 mx-auto">
+        <h2 className="text-3xl font-bold mb-6">Featured Projects</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6 items-center">
+          {projects.filter(p => p.title === 'Rubybeam' || p.title === 'MarketBuddy').map((project, idx) => (
+            <Link
+              to={`/projects/${project.title.toLowerCase()}`}
+              key={idx}
+              className="relative flex bg-card rounded-2xl shadow-lg border border-border p-2 gap-6 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+            >
+              <img src={project.image} alt={project.title} className="w-72 h-48 rounded-lg object-cover bg-muted border border-border" />
+              <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center overflow-hidden">
+                <h3 className="text-xl font-semibold text-card-foreground">{project.title}</h3>
+                <p className="text-muted-foreground text-base">{project.description}</p>
+                <div className="flex flex-wrap gap-1 my-1 items-center justify-center">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="bg-muted text-muted-foreground px-2 py-1 rounded-lg text-xs font-medium">{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <span className="absolute bottom-4 right-4">
+                <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" className="text-muted-foreground group-hover:text-foreground transition-colors duration-200">
+                  <path d="M7 17L17 7" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M7 7h10v10" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </span>
+            </Link>
+          ))}
+        </div>
+        <Link to="/projects2" className="block w-max mx-auto bg-blue-600 text-white rounded-lg px-8 py-2.5 text-lg font-medium shadow-md hover:bg-blue-700 hover:text-white transition-colors">View all projects</Link>
       </section>
     </div>
   );

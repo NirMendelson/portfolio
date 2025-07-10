@@ -40,6 +40,8 @@ const ProjectDetail = () => {
     : overviewText;
   const slidesPerPage = 3;
   const totalSlides = screenshots.length;
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
 
   const handlePrev = () => {
     if (!carouselApi) return;
@@ -71,6 +73,30 @@ const ProjectDetail = () => {
 
   return (
     <main className="max-w-3xl mx-auto px-4 py-12 text-left">
+      {/* Modal for screenshot */}
+      {modalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70" onClick={() => setModalOpen(false)}>
+          <div className="relative bg-transparent" onClick={e => e.stopPropagation()}>
+            <button
+              className="absolute top-2 right-2 text-white text-2xl font-bold bg-black/50 rounded-full w-8 h-8 hover:bg-black/80 transition p-0 flex items-center justify-center"
+              onClick={() => setModalOpen(false)}
+              aria-label="Close"
+            >
+              <span className="absolute inset-0 m-auto flex items-center justify-center leading-none -mt-2.49" style={{fontSize: '1.5rem', lineHeight: 1}}>×</span>
+            </button>
+            <img
+              src={modalImage?.src || modalImage}
+              alt={modalImage?.caption || 'Screenshot'}
+              className="max-w-[90vw] max-h-[80vh] rounded-xl shadow-lg border border-border bg-white"
+            />
+            {modalImage?.caption && (
+              <div className="text-white text-center mt-2 text-base bg-black/40 rounded px-2 py-1 inline-block mx-auto w-full">
+                {modalImage.caption}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
       {/* Hero Section */}
       <h1 className="text-4xl font-semibold mb-6 tracking-tight text-foreground text-left">{project.title}</h1>
 
@@ -130,7 +156,7 @@ const ProjectDetail = () => {
             <CarouselContent className="-ml-4">
               {screenshots.map((shot, idx) => (
                 <CarouselItem key={idx} className="pl-4 md:basis-1/3">
-                  <div className="rounded-2xl border border-border bg-muted shadow-sm flex flex-col items-center p-6 min-h-[220px]">
+                  <div className="rounded-2xl border border-border bg-muted shadow-sm flex flex-col items-center p-6 min-h-[220px] cursor-pointer" onClick={() => { setModalImage(shot); setModalOpen(true); }}>
                     <img
                       src={shot.src || shot}
                       alt={shot.caption || `Screenshot ${idx + 1}`}

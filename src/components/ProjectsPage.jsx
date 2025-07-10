@@ -160,7 +160,7 @@ const ProjectsPage = () => {
           <Link
             to={`/projects/${slugify(project.title)}`}
             key={idx}
-            className="relative flex bg-card rounded-2xl shadow-lg border border-border p-4 gap-6 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+            className="relative flex bg-card rounded-2xl shadow-lg border border-border p-2 gap-6 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
           >
             <img src={project.image} alt={project.title} className="w-72 h-48 rounded-lg object-cover bg-muted border border-border" />
             <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center">
