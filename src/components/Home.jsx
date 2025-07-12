@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-full">
-      <section className="flex flex-col items-center justify-center text-center w-full -mt-8 mb-32">
+      <section className="flex flex-col items-center justify-center text-center w-full -mt-0 mb-32">
         <div className="w-40 h-40 rounded-full overflow-hidden mb-4 flex items-center justify-center mt-28">
           <img src="/profile.png" alt="Profile" className="w-40 h-40 object-cover" style={{ objectPosition: 'center' }} />
         </div>
@@ -121,8 +121,21 @@ const Home = () => {
         </div>
       </section>
       {/* Projects Preview Section */}
-      <section className="w-full max-w-6xl mt-20 mx-auto">
-        <h2 className="text-3xl font-bold mb-6">Featured Projects</h2>
+      <section className="w-full max-w-6xl mt-0 mx-auto">
+        <div className="flex items-center justify-between mb-6 w-full">
+          <h2 className="text-3xl font-bold text-left">Featured Projects</h2>
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-1 text-blue-600 text-base font-normal hover:underline hover:text-blue-700 transition-colors"
+            onClick={() => window.scrollTo(0, 0)}
+          >
+            View all projects
+            <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" className="inline-block align-middle">
+              <path d="M7 17L17 7" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M7 7h10v10" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Link>
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6 items-center">
           {projects.filter(p => p.title === 'Rubybeam' || p.title === 'MarketBuddy').map((project, idx) => (
             <Link
@@ -149,7 +162,6 @@ const Home = () => {
             </Link>
           ))}
         </div>
-        <Link to="/projects2" className="block w-max mx-auto bg-blue-600 text-white rounded-lg px-8 py-2.5 text-lg font-medium shadow-md hover:bg-blue-700 hover:text-white transition-colors">View all projects</Link>
       </section>
     </div>
   );

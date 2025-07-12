@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const projects = [
@@ -52,7 +52,18 @@ I designed and implemented the system architecture, built internal tools for deb
   {
     title: 'MarketBuddy',
     description: 'AI-powered shared grocery orders for students',
-    overview: 'MarketBuddy is an AI-powered platform that allows students to order groceries together and share the cost.',
+    overview: `MarketBuddy is an AI-powered platform that helps students save money by coordinating shared online grocery orders. When a student starts an order, nearby users are notified and can join in, splitting the delivery cost and unlocking cheaper supermarket options even if they're farther away.
+
+The core workflow involves four automated steps:
+
+1.  Fetching real-time product data from multiple supermarket websites
+2.  Reading users’ grocery lists and finding the best prices
+3.  Purchasing the products from the selected supermarket
+4.  Coordinating delivery windows across multiple users in proximity
+
+The backend is built with FastAPI and uses custom Python scrapers to pull product data. A chatbot interface handles order entry and suggestions, while Google Maps API manages user clustering by location. The frontend is developed with Vue.js, offering a simple, responsive experience.
+
+I built and integrated every component- data scraping, AI matching, user flows, and payment integration, as part of a capstone project aimed at solving a real financial pain point for students.`,
     technologies: ['RAG', 'Vector Search', 'Agents', 'FastAPI', 'PostgreSQL'],
     screenshots: [
       { src: 'https://placehold.co/400x240?text=MarketBuddy+Dashboard', caption: 'MarketBuddy Dashboard' },
@@ -151,6 +162,35 @@ const ArrowIcon = ({ className }) => (
 );
 
 const ProjectsPage = () => {
+  // State to track which screenshot is shown for each project
+  const [screenshotIndexes, setScreenshotIndexes] = useState(Array(projects.length).fill(0));
+  // Store interval refs for each card
+  const intervalRefs = useRef([]);
+
+  // Handle mouse enter: start cycling screenshots
+  const handleMouseEnter = (idx, screenshotsLength) => {
+    // Avoid multiple intervals
+    if (intervalRefs.current[idx]) return;
+    intervalRefs.current[idx] = setInterval(() => {
+      setScreenshotIndexes(prev => {
+        const next = [...prev];
+        next[idx] = (next[idx] + 1) % screenshotsLength;
+        return next;
+      });
+    }, 1000);
+  };
+
+  // Handle mouse leave: stop cycling and reset
+  const handleMouseLeave = (idx) => {
+    clearInterval(intervalRefs.current[idx]);
+    intervalRefs.current[idx] = null;
+    setScreenshotIndexes(prev => {
+      const next = [...prev];
+      next[idx] = 0;
+      return next;
+    });
+  };
+
   return (
     <div className="min-h-screen py-10 w-full bg-background text-foreground">
       <h1 className="text-4xl font-semibold mt-6 mb-4 text-foreground text-left max-w-7xl mx-auto ">Projects</h1>
@@ -161,8 +201,14 @@ const ProjectsPage = () => {
             to={`/projects/${slugify(project.title)}`}
             key={idx}
             className="relative flex bg-card rounded-2xl shadow-lg border border-border p-2 gap-6 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+            onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
+            onMouseLeave={() => handleMouseLeave(idx)}
           >
-            <img src={project.image} alt={project.title} className="w-72 h-48 rounded-lg object-cover bg-muted border border-border" />
+            <img
+              src={project.screenshots && project.screenshots.length > 0 ? project.screenshots[screenshotIndexes[idx]].src : project.image}
+              alt={project.title}
+              className="w-72 h-48 rounded-lg object-cover bg-muted border border-border"
+            />
             <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center">
               <h3 className="text-xl font-semibold text-card-foreground">{project.title}</h3>
               <p className="text-muted-foreground text-base">{project.description}</p>
