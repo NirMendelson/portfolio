@@ -17,6 +17,32 @@ const Home = () => {
     } catch (err) {}
   };
 
+  // --- Screenshot cycling for featured projects ---
+  const featuredProjects = projects.filter(p => p.title === 'Rubybeam' || p.title === 'MarketBuddy');
+  const [screenshotIndexes, setScreenshotIndexes] = useState(Array(featuredProjects.length).fill(0));
+  const intervalRefs = useRef([]);
+
+  const handleMouseEnter = (idx, screenshotsLength) => {
+    if (intervalRefs.current[idx]) return;
+    intervalRefs.current[idx] = setInterval(() => {
+      setScreenshotIndexes(prev => {
+        const next = [...prev];
+        next[idx] = (next[idx] + 1) % screenshotsLength;
+        return next;
+      });
+    }, 1000);
+  };
+
+  const handleMouseLeave = (idx) => {
+    clearInterval(intervalRefs.current[idx]);
+    intervalRefs.current[idx] = null;
+    setScreenshotIndexes(prev => {
+      const next = [...prev];
+      next[idx] = 0;
+      return next;
+    });
+  };
+
   return (
     <div className="flex flex-col w-full">
       <section className="flex flex-col items-center justify-center text-center w-full -mt-0 mb-32">
@@ -137,13 +163,19 @@ const Home = () => {
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6 items-center">
-          {projects.filter(p => p.title === 'Rubybeam' || p.title === 'MarketBuddy').map((project, idx) => (
+          {featuredProjects.map((project, idx) => (
             <Link
               to={`/projects/${project.title.toLowerCase()}`}
               key={idx}
               className="relative flex bg-card rounded-2xl shadow-lg border border-border p-2 gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+              onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
+              onMouseLeave={() => handleMouseLeave(idx)}
             >
-              <img src={project.image} alt={project.title} className="w-72 h-48 rounded-lg object-cover bg-muted border border-border" />
+              <img
+                src={project.screenshots && project.screenshots.length > 0 ? project.screenshots[screenshotIndexes[idx]].src : project.image}
+                alt={project.title}
+                className="w-72 h-48 rounded-lg object-cover bg-muted border border-border"
+              />
               <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center overflow-hidden">
                 <h3 className="text-xl font-semibold text-card-foreground">{project.title}</h3>
                 <p className="text-muted-foreground text-base">{project.description}</p>
