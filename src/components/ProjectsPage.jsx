@@ -200,7 +200,7 @@ const ProjectsPage = () => {
           <Link
             to={`/projects/${slugify(project.title)}`}
             key={idx}
-            className="relative flex bg-card rounded-2xl shadow-lg border border-border p-2 gap-6 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+            className="relative flex bg-card rounded-2xl shadow-lg border border-border p-2 gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
             onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
             onMouseLeave={() => handleMouseLeave(idx)}
           >
