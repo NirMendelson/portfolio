@@ -20,14 +20,14 @@ I designed and implemented the system architecture, built internal tools for deb
 
     technologies: ['Python', 'LangChain', 'OpenAI API', 'React', 'Node.js', 'MongoDB',  'AWS', 'Husky'],
     screenshots: [
-      { src: '/public/rubybeamScreenshot.png', caption: 'Homepage' },
-      { src: '/public/rubybeamFeatures.png', caption: 'Features' },
-      { src: '/public/rubybeamLeads1.png', caption: 'Leads' },
-      { src: '/public/rubybeamBrandOverview.png', caption: 'Brand Overview' },
-      { src: '/public/rubybeamOutreach.png', caption: 'Outreach' }
+      { src: '/rubybeamScreenshot.png', caption: 'Homepage' },
+      { src: '/rubybeamFeatures.png', caption: 'Features' },
+      { src: '/rubybeamLeads1.png', caption: 'Leads' },
+      { src: '/rubybeamBrandOverview.png', caption: 'Brand Overview' },
+      { src: '/rubybeamOutreach.png', caption: 'Outreach' }
     ],
     tags: ['AI Agents', 'LangChain', 'Data Enrichment'],
-    image: '/public/rubybeamScreenshot.png',
+    image: '/rubybeamScreenshot.png',
     link: '#',
   },
   {
@@ -60,12 +60,12 @@ The backend is built with FastAPI and uses custom Python scrapers to pull produc
 I built and integrated every component- data scraping, AI matching, user flows, and payment integration, as part of a capstone project aimed at solving a real financial pain point for students.`,
     technologies: ['OpenAI API', 'PostgreSQL', 'Supabase', 'Node', 'React'],
     screenshots: [
-      { src: '/public/marketbuddyHomepage.png', caption: 'Homepage' },
-      { src: '/public/marketbuddyOrder1.png', caption: 'Order Page' },
-      { src: '/public/marketbuddyOrder2.png', caption: 'Validating Items' },
-      { src: '/public/marketbuddyOrder3.png', caption: 'Choosing Delivery' },
-      { src: '/public/marketbuddyPaypal.png', caption: 'Paypal Integration' },
-      { src: '/public/marketbuddyEmail.png', caption: 'Email Notification' }
+      { src: '/marketbuddyHomepage.png', caption: 'Homepage' },
+      { src: '/marketbuddyOrder1.png', caption: 'Order Page' },
+      { src: '/marketbuddyOrder2.png', caption: 'Validating Items' },
+      { src: '/marketbuddyOrder3.png', caption: 'Choosing Delivery' },
+      { src: '/marketbuddyPaypal.png', caption: 'Paypal Integration' },
+      { src: '/marketbuddyEmail.png', caption: 'Email Notification' }
     ],
     tags: ['Similarity Search', 'OpenAI API', 'Supabase'],
     image: 'https://placehold.co/200x140?text=Project+2',
