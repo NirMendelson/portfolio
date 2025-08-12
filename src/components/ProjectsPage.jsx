@@ -174,26 +174,26 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div className="min-h-screen py-10 w-full bg-background text-foreground">
-      <h1 className="text-4xl font-semibold mt-6 mb-4 text-foreground text-left max-w-7xl mx-auto ">Projects</h1>
-      <div className="h-px bg-border border-0 max-w-7xl mx-auto mb-4" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
+    <div className="min-h-screen py-6 sm:py-10 w-full bg-background text-foreground">
+      <h1 className="text-3xl sm:text-4xl font-semibold mt-6 mb-4 text-foreground text-left max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">Projects</h1>
+      <div className="h-px bg-border border-0 max-w-7xl mx-auto mb-4 px-4 sm:px-6 lg:px-8" />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {projects.map((project, idx) => (
           <Link
             to={`/projects/${slugify(project.title)}`}
             key={idx}
-            className="relative flex bg-card rounded-2xl shadow-lg border border-border p-2 gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+            className="relative flex flex-col sm:flex-row bg-card rounded-2xl shadow-lg border border-border p-3 sm:p-2 gap-3 sm:gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
             onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
             onMouseLeave={() => handleMouseLeave(idx)}
           >
             <img
               src={project.screenshots && project.screenshots.length > 0 ? project.screenshots[screenshotIndexes[idx]].src : project.image}
               alt={project.title}
-              className="w-72 h-48 rounded-lg object-cover bg-muted border border-border"
+              className="w-full sm:w-72 h-48 rounded-lg object-cover bg-muted border border-border"
             />
-            <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center">
-              <h3 className="text-xl font-semibold text-card-foreground">{project.title}</h3>
-              <p className="text-muted-foreground text-base">{project.description}</p>
+            <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center p-2">
+              <h3 className="text-lg sm:text-xl font-semibold text-card-foreground">{project.title}</h3>
+              <p className="text-muted-foreground text-sm sm:text-base">{project.description}</p>
               <div className="flex flex-wrap gap-1 my-1 items-center justify-center">
                 {project.tags.map((tag, i) => (
                   <span key={i} className="bg-muted text-muted-foreground px-2 py-1 rounded-lg text-xs font-medium">{tag}</span>
