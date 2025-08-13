@@ -4,8 +4,8 @@ import { projects } from './ProjectsPage';
 
 // Map project titles to logo images in public folder
 const projectLogos = {
-  Rubybeam: '/public/RubybeamLogo.png',
-  MarketBuddy: '/public/marketBuddyLogo.png',
+  Rubybeam: '/RubybeamLogo.png',
+  MarketBuddy: '/marketBuddyLogo.png',
   // Add more mappings as you add logos
 };
 

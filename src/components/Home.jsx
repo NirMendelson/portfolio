@@ -106,14 +106,13 @@ const Home = () => {
         </div>
       </section>
       {/* Let's Work Together Section */}
-      <section className="flex flex-col items-start justify-center text-left w-full max-w-2xl mt-12 sm:mt-16 lg:mt-16 mb-16 sm:mb-20 lg:mb-24 px-4 sm:px-8 lg:px-12 mx-auto">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Let's Work Together</h2>
+      <section className="flex flex-col items-start justify-center text-left w-full max-w-5xl mt-12 sm:mt-16 lg:mt-16 mb-36 sm:mb-40 lg:mb-44 px-4 sm:px-8 lg:px-12 mx-auto">        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Let's Work Together</h2>
         <p className="text-base sm:text-lg mb-6">
         Whether you're a company looking to prototype an AI product, build internal tools, or explore automation, or an individual with a bold idea and no clue where to start - I can help you bring it to life.
         </p>
         <div className="mb-6">
-          <span className="font-semibold">What I offer:</span>
-          <ul className="list-disc list-inside mt-2 space-y-1 text-sm sm:text-base">
+          <span className="font-semibold text-base sm:text-lg">What I offer:</span>
+          <ul className="list-disc list-inside mt-2 space-y-1 text-base sm:text-lg">
             <li><span className="font-medium">AI-powered MVPs</span> – fast, functional, and tailored to your use case</li>
             <li><span className="font-medium">Automation & Internal Tools</span> – streamline workflows using AI and modern web tech</li>
             <li><span className="font-medium">Product Strategy & Tech Guidance</span> – helping you make the right early decisions</li>

@@ -60,7 +60,7 @@ The backend is built with FastAPI and uses custom Python scrapers to pull produc
 I built and integrated every component- data scraping, AI matching, user flows, and payment integration, as part of a capstone project aimed at solving a real financial pain point for students.`,
     technologies: ['OpenAI API', 'PostgreSQL', 'Supabase', 'Node', 'React'],
     screenshots: [
-      { src: '/marketbuddyHomepage.png', caption: 'Homepage' },
+      { src: '/marketBuddyHomepage.png', caption: 'Homepage' },
       { src: '/marketbuddyOrder1.png', caption: 'Order Page' },
       { src: '/marketbuddyOrder2.png', caption: 'Validating Items' },
       { src: '/marketbuddyOrder3.png', caption: 'Choosing Delivery' },
