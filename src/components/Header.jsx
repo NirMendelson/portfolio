@@ -55,7 +55,6 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <Link to="/projects" className="text-foreground hover:text-foreground font-semibold">Projects</Link>
-            <Link to="/about" className="text-foreground hover:text-foreground font-medium">About</Link>
             <button
               aria-label="Toggle dark mode"
               onClick={handleToggleDark}
@@ -100,13 +99,6 @@ const Header = () => {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Projects
-              </Link>
-              <Link 
-                to="/about" 
-                className="text-foreground hover:text-foreground font-medium py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                About
               </Link>
               <div className="flex items-center justify-between py-2">
                 <span className="text-foreground">Theme:</span>
