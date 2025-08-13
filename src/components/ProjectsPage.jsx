@@ -30,19 +30,7 @@ I designed and implemented the system architecture, built internal tools for deb
     image: '/rubybeamScreenshot.png',
     link: '#',
   },
-  {
-    title: 'Global YouTuber',
-    description: 'Translate your videos to multiple languages, with your own voice',
-    overview: 'Global YouTuber enables creators to reach a worldwide audience by translating and dubbing videos using AI voice cloning.',
-    technologies: ['Vue', 'Whisper', 'Hugging Face'],
-    screenshots: [
-      { src: 'https://placehold.co/400x240?text=Main+UI', caption: 'Main interface' },
-      { src: 'https://placehold.co/400x240?text=Voice+Clone', caption: 'Voice cloning setup' }
-    ],
-    tags: ['Multimodal AI', 'Whisper', 'Hugging Face'],
-    image: 'https://placehold.co/200x140?text=Project+2',
-    link: '#',
-  },
+
   {
     title: 'MarketBuddy',
     description: 'AI-powered shared grocery orders for students',
@@ -71,62 +59,75 @@ I built and integrated every component- data scraping, AI matching, user flows, 
     image: 'https://placehold.co/200x140?text=Project+2',
     link: '#',
   },
-  {
-    title: 'WikiQuest',
-    description: 'Turn doomscrolling into discovery with AI-powered Wikipedia journeys.',
-    overview: 'WikiQuest is an AI-powered platform that allows users to explore Wikipedia articles in a more engaging and interactive way.',
-    technologies: ['RAG', 'LLM Apps', 'User Simulation', 'Wikipedia API'],
-    screenshots: [
-      { src: 'https://placehold.co/400x240?text=WikiQuest+Dashboard', caption: 'WikiQuest Dashboard' },
-      { src: 'https://placehold.co/400x240?text=Journey+Start', caption: 'Starting a journey' },
-      { src: 'https://placehold.co/400x240?text=Article+View', caption: 'Viewing an article' }
-    ],
-    tags: ['RAG', 'LLM Apps', 'User Simulation', 'Wikipedia API'],
-    image: 'https://placehold.co/200x140?text=Project+3',
-    link: '#',
-  },
-  {
-    title: 'Altcast',
-    description: 'The platform for commentary creators.',
-    overview: 'Altcast is a platform that allows creators to commentate on videos and interact with their audience.',
-    technologies: ['Audio Syncing', 'React', 'Python'],
-    screenshots: [
-      { src: 'https://placehold.co/400x240?text=Altcast+Dashboard', caption: 'Altcast Dashboard' },
-      { src: 'https://placehold.co/400x240?text=Commentary+Creation', caption: 'Creating a commentary' },
-      { src: 'https://placehold.co/400x240?text=Live+Stream', caption: 'Live stream' }
-    ],
-    tags: ['Audio Syncing', 'React', 'Python'],
-    image: 'https://placehold.co/200x140?text=Project+4',
-    link: '#',
-  },
-  {
-    title: 'YouTube Fantasy League',
-    description: 'Choose up and coming YouTubers and compete with friends',
-    overview: 'YouTube Fantasy League is a platform that allows users to create fantasy leagues based on YouTube videos.',
-    technologies: ['Gamification', 'Data Scraping', 'Node.js'],
-    screenshots: [
-      { src: 'https://placehold.co/400x240?text=Fantasy+League+Dashboard', caption: 'Fantasy League Dashboard' },
-      { src: 'https://placehold.co/400x240?text=League+Creation', caption: 'Creating a league' },
-      { src: 'https://placehold.co/400x240?text=Competition', caption: 'Competition page' }
-    ],
-    tags: ['Gamification', 'Data Scraping', 'Node.js'],
-    image: 'https://placehold.co/200x140?text=Project+4',
-    link: '#',
-  },
-  {
-    title: 'History-based Ideas Generator',
-    description: 'Simulate historical events and generate startup ideas',
-    overview: 'History-based Ideas Generator is a platform that allows users to simulate historical events and generate startup ideas based on those events.',
-    technologies: ['Simulation', 'LLM', 'Prompt Engineering', 'OpenAI', 'Idea Generation'],
-    screenshots: [
-      { src: 'https://placehold.co/400x240?text=Idea+Generator+Dashboard', caption: 'Idea Generator Dashboard' },
-      { src: 'https://placehold.co/400x240?text=Event+Simulation', caption: 'Simulating an event' },
-      { src: 'https://placehold.co/400x240?text=Idea+Generation', caption: 'Generating an idea' }
-    ],
-    tags: ['Simulation', 'LLM', 'Prompt Engineering', 'OpenAI', 'Idea Generation'],
-    image: 'https://placehold.co/200x140?text=Project+4',
-    link: '#',
-  }
+  // {
+  //   title: 'Global YouTuber',
+  //   description: 'Translate your videos to multiple languages, with your own voice',
+  //   overview: 'Global YouTuber enables creators to reach a worldwide audience by translating and dubbing videos using AI voice cloning.',
+  //   technologies: ['Vue', 'Whisper', 'Hugging Face'],
+  //   screenshots: [
+  //     { src: 'https://placehold.co/400x240?text=Main+UI', caption: 'Main interface' },
+  //     { src: 'https://placehold.co/400x240?text=Voice+Clone', caption: 'Voice cloning setup' }
+  //   ],
+  //   tags: ['Multimodal AI', 'Whisper', 'Hugging Face'],
+  //   image: 'https://placehold.co/200x140?text=Project+2',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'WikiQuest',
+  //   description: 'Turn doomscrolling into discovery with AI-powered Wikipedia journeys.',
+  //   overview: 'WikiQuest is an AI-powered platform that allows users to explore Wikipedia articles in a more engaging and interactive way.',
+  //   technologies: ['RAG', 'LLM Apps', 'User Simulation', 'Wikipedia API'],
+  //   screenshots: [
+  //     { src: 'https://placehold.co/400x240?text=WikiQuest+Dashboard', caption: 'WikiQuest Dashboard' },
+  //     { src: 'https://placehold.co/400x240?text=Journey+Start', caption: 'Starting a journey' },
+  //     { src: 'https://placehold.co/400x240?text=Article+View', caption: 'Viewing an article' }
+  //   ],
+  //   tags: ['RAG', 'LLM Apps', 'User Simulation', 'Wikipedia API'],
+  //   image: 'https://placehold.co/200x140?text=Project+3',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'Altcast',
+  //   description: 'The platform for commentary creators.',
+  //   overview: 'Altcast is a platform that allows creators to commentate on videos and interact with their audience.',
+  //   technologies: ['Audio Syncing', 'React', 'Python'],
+  //   screenshots: [
+  //     { src: 'https://placehold.co/400x240?text=Altcast+Dashboard', caption: 'Altcast Dashboard' },
+  //     { src: 'https://placehold.co/400x240?text=Commentary+Creation', caption: 'Creating a commentary' },
+  //     { src: 'https://placehold.co/400x240?text=Live+Stream', caption: 'Live stream' }
+  //   ],
+  //   tags: ['Audio Syncing', 'React', 'Python'],
+  //   image: 'https://placehold.co/200x140?text=Project+4',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'YouTube Fantasy League',
+  //   description: 'Choose up and coming YouTubers and compete with friends',
+  //   overview: 'YouTube Fantasy League is a platform that allows users to create fantasy leagues based on YouTube videos.',
+  //   technologies: ['Gamification', 'Data Scraping', 'Node.js'],
+  //   screenshots: [
+  //     { src: 'https://placehold.co/400x240?text=Fantasy+League+Dashboard', caption: 'Fantasy League Dashboard' },
+  //     { src: 'https://placehold.co/400x240?text=League+Creation', caption: 'Creating a league' },
+  //     { src: 'https://placehold.co/400x240?text=Competition', caption: 'Competition page' }
+  //   ],
+  //   tags: ['Gamification', 'Data Scraping', 'Node.js'],
+  //   image: 'https://placehold.co/200x140?text=Project+4',
+  //   link: '#',
+  // },
+  // {
+  //   title: 'History-based Ideas Generator',
+  //   description: 'Simulate historical events and generate startup ideas',
+  //   overview: 'History-based Ideas Generator is a platform that allows users to simulate historical events and generate startup ideas based on those events.',
+  //   technologies: ['Simulation', 'LLM', 'Prompt Engineering', 'OpenAI', 'Idea Generation'],
+  //   screenshots: [
+  //     { src: 'https://placehold.co/400x240?text=Idea+Generator+Dashboard', caption: 'Idea Generator Dashboard' },
+  //     { src: 'https://placehold.co/400x240?text=Event+Simulation', caption: 'Simulating an event' },
+  //     { src: 'https://placehold.co/400x240?text=Idea+Generation', caption: 'Generating an idea' }
+  //   ],
+  //   tags: ['Simulation', 'LLM', 'Prompt Engineering', 'OpenAI', 'Idea Generation'],
+  //   image: 'https://placehold.co/200x140?text=Project+4',
+  //   link: '#',
+  // }
 ];
 
 function slugify(title) {
