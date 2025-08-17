@@ -50,6 +50,7 @@ const ProjectDetail = () => {
     : overviewText;
   const slidesPerPage = 3;
   const totalSlides = screenshots.length;
+  const showArrows = totalSlides > slidesPerPage;
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
 
@@ -273,8 +274,12 @@ const ProjectDetail = () => {
                 })}
               </CarouselContent>
               {/* Use previous design but custom movement */}
-              <CarouselPrevious onClick={handlePrev} disabled={current === 0} />
-              <CarouselNext onClick={handleNext} disabled={current >= totalSlides - slidesPerPage} />
+              {showArrows && (
+                <>
+                  <CarouselPrevious onClick={handlePrev} disabled={current === 0} />
+                  <CarouselNext onClick={handleNext} disabled={current >= totalSlides - slidesPerPage} />
+                </>
+              )}
             </Carousel>
             {/* Dot navigation */}
             <div className="flex justify-center mt-4 gap-2">

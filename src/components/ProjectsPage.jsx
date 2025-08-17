@@ -73,8 +73,34 @@ I built and integrated every component- data scraping, AI matching, user flows, 
     "tags": ["Ollama", "PyQt6", "SQLite"],
     "image": "https://placehold.co/200x140?text=Project+Shortcut+Master",
     "link": "#"
+  },
+
+  {
+    "title": "Scenario Simulator",
+    "description": "Multi-agent scenario brainstorming that turns world events into investable outcomes",
+    "overview": "After COVID hit, I kept thinking how obvious some trades became in hindsight. Stocks like Netflix, Zoom, and DoorDash skyrocketed because everyone was locked at home. Since then I’ve often asked myself: if a big event happens, how will it ripple through the world, and where are the investments?\n\nI first built a single-agent system that generated outcomes from a scenario, but the results were generic and lacked creativity. To improve it, I introduced four specialized experts- Economy, Geopolitics, Social, and Tech, along with a judge who picked the best ideas. This was better, but still too one-dimensional.\n\nThe breakthrough came when I realized my best ideas in real life come from brainstorming with friends, not just making lists. The agents were only talking to the judge, not to each other. So I rebuilt the system as true agent-to-agent (A2A) debate: each expert proposes outcomes, critiques the others, and refines their ideas. This back-and-forth produces far more nuanced and creative results. Finally, a Profit Mapper adds concrete investment opportunities for each outcome.\n\nThe React frontend brings this process to life by visualizing the brainstorm as an interactive tree. Each branch shows how outcomes evolve through critique rounds and where specific trade ideas (tickers, ETFs, sectors) are mapped.\n\nCore A2A workflow:\n1. Intake the scenario\n2. Experts Round: four agents each propose 1 outcome\n3. Critique Round: agents critique each other’s suggestions and refine them\n4. Profit Mapping: system suggests concrete tickers/ETFs for each outcome\n5. Another A2A round can run on each outcome to create deeper branches\n6. Final output is a tree of outcomes with mapped investment ideas, visualized in React",
+    "technologies": [
+      "Python",
+      "LangChain",
+      "Grok",
+      "FastAPI",
+      "Pydantic",
+      "Uvicorn",
+      "React Flow",
+    ],
+    "screenshots": [
+      { "src": "/scenario-tree.png", "caption": "Tree" },
+      { "src": "/scenario-subtree.png", "caption": "Subtree" },
+      { "src": "/scenario-agent-logs.png", "caption": "Agents Logs" }
+    ],
+    "tags": ["A2A", "Multi-Agent Orchestration",],
+    "image": "/scenario-sim-home.png",
+    "link": "#"
   }
-  
+
+
+
+
   // {
   //   title: 'Global YouTuber',
   //   description: 'Translate your videos to multiple languages, with your own voice',
@@ -165,6 +191,8 @@ const ProjectsPage = () => {
   const [screenshotIndexes, setScreenshotIndexes] = useState(Array(projects.length).fill(0));
   // Store interval refs for each card
   const intervalRefs = useRef([]);
+  // Store video refs for each card so we can control playback on hover
+  const videoRefs = useRef([]);
 
   // Handle mouse enter: start cycling screenshots
   const handleMouseEnter = (idx, screenshotsLength) => {
@@ -177,6 +205,16 @@ const ProjectsPage = () => {
         return next;
       });
     }, 1000);
+
+    // If this card has a video element, start playing it on hover
+    const video = videoRefs.current[idx];
+    if (video) {
+      try {
+        video.loop = true;
+        video.muted = true;
+        video.play();
+      } catch (_) { }
+    }
   };
 
   // Handle mouse leave: stop cycling and reset
@@ -188,6 +226,15 @@ const ProjectsPage = () => {
       next[idx] = 0;
       return next;
     });
+
+    // Pause and reset video when not hovering
+    const video = videoRefs.current[idx];
+    if (video) {
+      try {
+        video.pause();
+        video.currentTime = 0;
+      } catch (_) { }
+    }
   };
 
   return (
@@ -195,33 +242,50 @@ const ProjectsPage = () => {
       <h1 className="text-3xl sm:text-4xl font-semibold mt-6 mb-4 text-foreground text-left max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">Projects</h1>
       <div className="h-px bg-border border-0 max-w-7xl mx-auto mb-4 px-4 sm:px-6 lg:px-8" />
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {projects.map((project, idx) => (
-          <Link
-            to={`/projects/${slugify(project.title)}`}
-            key={idx}
-            className="relative flex flex-col sm:flex-row bg-card rounded-2xl shadow-lg border border-border p-3 sm:p-2 gap-3 sm:gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
-            onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
-            onMouseLeave={() => handleMouseLeave(idx)}
-          >
-            <img
-              src={project.screenshots && project.screenshots.length > 0 ? project.screenshots[screenshotIndexes[idx]].src : project.image}
-              alt={project.title}
-              className="w-full sm:w-72 h-48 rounded-lg object-cover bg-card border border-border"
-            />
-            <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center p-2">
-              <h3 className="text-lg sm:text-xl font-semibold text-card-foreground">{project.title}</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">{project.description}</p>
-              <div className="flex flex-wrap gap-1 my-1 items-center justify-center">
-                {project.tags.map((tag, i) => (
-                  <span key={i} className="bg-muted text-muted-foreground px-2 py-1 rounded-lg text-xs font-medium">{tag}</span>
-                ))}
+        {projects.map((project, idx) => {
+          const hasScreenshots = project.screenshots && project.screenshots.length > 0;
+          const mediaSource = hasScreenshots ? project.screenshots[screenshotIndexes[idx]].src : project.image;
+          const isVideo = typeof mediaSource === 'string' && mediaSource.toLowerCase().endsWith('.mp4');
+
+          return (
+            <Link
+              to={`/projects/${slugify(project.title)}`}
+              key={idx}
+              className="relative flex flex-col sm:flex-row bg-card rounded-2xl shadow-lg border border-border p-3 sm:p-2 gap-3 sm:gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
+              onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
+              onMouseLeave={() => handleMouseLeave(idx)}
+            >
+              {isVideo ? (
+                <video
+                  ref={(el) => { videoRefs.current[idx] = el; }}
+                  src={mediaSource}
+                  className="w-full sm:w-72 h-48 rounded-lg object-cover bg-card border border-border"
+                  muted
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                <img
+                  src={mediaSource}
+                  alt={project.title}
+                  className="w-full sm:w-72 h-48 rounded-lg object-cover bg-card border border-border"
+                />
+              )}
+              <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center p-2">
+                <h3 className="text-lg sm:text-xl font-semibold text-card-foreground">{project.title}</h3>
+                <p className="text-muted-foreground text-sm sm:text-base">{project.description}</p>
+                <div className="flex flex-wrap gap-1 my-1 items-center justify-center">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="bg-muted text-muted-foreground px-2 py-1 rounded-lg text-xs font-medium">{tag}</span>
+                  ))}
+                </div>
               </div>
-            </div>
-            <span className="absolute bottom-4 right-4">
-              <ArrowIcon className="text-muted-foreground group-hover:text-foreground transition-colors duration-200" />
-            </span>
-          </Link>
-        ))}
+              <span className="absolute bottom-4 right-4">
+                <ArrowIcon className="text-muted-foreground group-hover:text-foreground transition-colors duration-200" />
+              </span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

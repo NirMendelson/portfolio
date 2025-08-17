@@ -46,7 +46,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full bg-background/80 backdrop-blur z-50 border-b border-border">
+      <header className="fixed top-0 left-0 w-full bg-background backdrop-blur z-50 border-b border-border">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
           <div className="flex items-center gap-2">
             <Link to="/" className="font-bold text-xl sm:text-2xl text-foreground hover:text-foreground mx-2">Nir.</Link>
@@ -91,7 +91,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur border-t border-border">
+          <div className="md:hidden bg-background backdrop-blur border-t border-border">
             <nav className="flex flex-col px-4 py-4 space-y-4">
               <Link 
                 to="/projects" 

@@ -72,12 +72,9 @@ const Home = () => {
           >
             Contact me
           </button>
-          <a href="/Nir_Mendelson_CV.pdf" download target="_blank" rel="noopener noreferrer" className="bg-muted text-foreground rounded-lg px-6 sm:px-8 py-3 text-base sm:text-lg font-medium hover:bg-accent transition inline-block text-center h-12 flex items-center justify-center">
-            Download CV
-          </a>
           {showContactBar && (
             <div className="absolute left-1/2 -translate-x-1/2 -ml-[6px] top-full mt-4 flex items-center justify-center w-max z-20">
-              <div className="flex gap-6 px-8 py-3 rounded-full border border-border dark:border-gray-400 shadow bg-card/80 backdrop-blur">
+              <div className="flex gap-6 px-8 py-3 rounded-full border border-border dark:border-gray-500 shadow bg-card/80 backdrop-blur">
                 <a
                   href="https://www.linkedin.com/in/nirmendelson/"
                   target="_blank"
@@ -113,14 +110,14 @@ const Home = () => {
         <div className="mb-6">
           <span className="font-semibold text-base sm:text-lg">What I offer:</span>
           <ul className="list-disc list-inside mt-2 space-y-1 text-base sm:text-lg">
-            <li><span className="font-medium">AI-powered MVPs</span> – fast, functional, and tailored to your use case</li>
-            <li><span className="font-medium">Automation & Internal Tools</span> – streamline workflows using AI and modern web tech</li>
-            <li><span className="font-medium">Product Strategy & Tech Guidance</span> – helping you make the right early decisions</li>
+            <li><span className="font-medium">AI-powered MVPs</span>- fast, functional, and tailored to your use case</li>
+            <li><span className="font-medium">Automation & Internal Tools</span>- streamline workflows using AI and modern web tech</li>
+            <li><span className="font-medium">Product Strategy & Tech Guidance</span>- helping you make the right early decisions</li>
           </ul>
         </div>
         <p className="text-base sm:text-lg mb-6">If you're building something interesting, I'd love to hear about it.</p>
         {/* Contact Capsule (reuse) */}
-        <div className="flex gap-4 sm:gap-6 px-6 sm:px-8 py-3 rounded-full border border-border dark:border-gray-400 shadow bg-card/80 backdrop-blur items-center w-max">
+        <div className="flex gap-4 sm:gap-6 px-6 sm:px-8 py-3 rounded-full border border-border dark:border-gray-500 shadow bg-card/80 backdrop-blur items-center w-max">
           <a
             href="https://www.linkedin.com/in/nirmendelson/"
             target="_blank"
@@ -147,7 +144,7 @@ const Home = () => {
       </section>
       {/* Projects Preview Section */}
       <section className="w-full max-w-6xl mt-0 mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 w-full gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 w-full gap-4 pl-2">
           <h2 className="text-2xl sm:text-3xl font-bold text-left">Featured Projects</h2>
           <Link
             to="/projects"
