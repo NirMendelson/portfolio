@@ -9,14 +9,13 @@ const projects = [
 
 The core workflow involves four automated steps:
 
-1. **Featching brand data** from multiple sources  
-2. **Analyzing influencer content** to understand audience and niche  
-3. **Matching brands** using category alignment and audience fit  
-4. **Generating emails** with contextual personalization
+1. Featching brand data from multiple sources  
+2. Analyzing influencer content to understand audience and niche  
+3. Matching brands using category alignment and audience fit  
+4. Generating emails with contextual personalization
 
 The entire process is orchestrated through an AI agent framework powered by Python and OpenAI's language models. I built the backend in Node.js with MongoDB, exposed endpoints via REST APIs, and used React for the frontend. The app is deployed on AWS and supports high-throughput batch processing of outreach campaigns.
-
-I designed and implemented the system architecture, built internal tools for debugging and QA, and iterated the matching logic based on feedback from real agencies during pilot testing.`,
+`,
 
     technologies: ['Python', 'LangChain', 'OpenAI API', 'React', 'Node.js', 'MongoDB', 'AWS', 'Husky'],
     screenshots: [
@@ -62,15 +61,15 @@ I built and integrated every component- data scraping, AI matching, user flows, 
   {
     "title": "Shortcut Master",
     "description": "AI-powered live shortcut suggestions and custom automation builder",
-    "overview": "Shortcut Master is a desktop productivity assistant that listens to global keyboard and mouse events, detects inefficient mouse-heavy actions, and instantly suggests relevant keyboard shortcuts. Its AI engine also analyzes repeated user actions across apps to propose new custom shortcuts, enabling users to automate multi-step processes effortlessly.\n\nThe core workflow involves:\n\n1. Tracking real-time keyboard and mouse input globally\n2. Detecting when a mouse action has an equivalent keyboard shortcut\n3. Displaying a lightweight, Apple-style liquid glass notification with the shortcut\n4. Logging all interactions in a local database for AI analysis\n5. Using AI (via Ollama running Mistral 7B) to identify repetitive sequences and suggest custom automation shortcuts\n\nThe backend is built with Python, leveraging PyQt6 for the notification UI and Microsoft UI Automation for precise click tracking. An SQLite database stores interaction logs locally. The AI suggestion module runs locally using Ollama with Mistral 7B, ensuring privacy while providing fast, context-aware recommendations.\n\nI designed and implemented every component- from low-level input hooks to the notification UI and AI suggestion pipeline, to create a tool that not only improves workflow efficiency in real time but also evolves with the user’s habits.",
-    "technologies": ["Python", "Ollama", "PyQt6", "SQLite", "Microsoft UI Automation"],
+    "overview": "Shortcut Master is a desktop productivity assistant that listens to global keyboard and mouse events, detects inefficient mouse-heavy actions, and instantly suggests relevant keyboard shortcuts. Its AI engine also analyzes repeated user actions across apps to propose new custom shortcuts, enabling users to automate multi-step processes effortlessly.\n\nThe core workflow involves:\n\n1. Tracking real-time keyboard and mouse input globally\n2. Detecting when a mouse action has an equivalent keyboard shortcut\n3. Displaying a lightweight, Apple-style liquid glass notification with the shortcut\n4. Logging all interactions in a local database for AI analysis\n5. Using AI (via Ollama running Mistral 7B) to identify repetitive sequences and suggest custom automation shortcuts\n\nThe backend is built with Python, leveraging PyQt6 for the notification UI and Microsoft UI Automation for precise click tracking. An SQLite database stores interaction logs locally. The AI suggestion module runs locally using Ollama with Mistral 7B, ensuring privacy while providing fast, context-aware recommendations.",
+    "technologies": ["Python", "Ollama", "Mistral", "PyQt6", "SQLite", "Microsoft UI Automation"],
     "screenshots": [
       { "src": "/shortcuts-demo.mp4", "caption": "Demo" },
       { "src": "/shortcut-notification.png", "caption": "Notification" },
       { "src": "/shortcut-shortcuts.png", "caption": "Shortcuts Tab" },
       { "src": "/shortcut-live-tracker.png", "caption": "Live Tracker Tab" }
     ],
-    "tags": ["Ollama", "PyQt6", "SQLite"],
+    "tags": ["Ollama", "Mistral", "SQLite"],
     "image": "https://placehold.co/200x140?text=Project+Shortcut+Master",
     "link": "#"
   },
