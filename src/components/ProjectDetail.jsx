@@ -54,6 +54,15 @@ const ProjectDetail = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState(null);
 
+  // Ensure we start at the top when entering a project page
+  React.useEffect(() => {
+    try {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    } catch (_) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   React.useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') {
@@ -138,7 +147,7 @@ const ProjectDetail = () => {
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-6 tracking-tight text-foreground text-left">{project.title}</h1>
 
       {/* Overview */}
-      <section className="mb-4 sm:mb-6">
+      <section className="mb-8 sm:mb-10">
         <h2 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-foreground text-left">📌 Overview</h2>
         <div className="prose max-w-none text-foreground dark:text-foreground prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-a:text-blue-600 text-sm sm:text-base" style={{ marginBottom: 0 }}>
           {isTruncated ? (
@@ -170,7 +179,7 @@ const ProjectDetail = () => {
         </div>
       </section>
       {/* Technologies */}
-      <section className="mb-8 sm:mb-10">
+      <section className="mb-12 sm:mb-14">
         <h2 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-foreground text-left">💻 Technologies</h2>
         <div className="flex flex-wrap gap-2 sm:gap-3">
           {(project.technologies || project.tags).map((tech, i) => (

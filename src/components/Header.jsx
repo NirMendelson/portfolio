@@ -81,9 +81,11 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-foreground p-2"
+            className="md:hidden text-foreground dark:text-foreground p-2 bg-transparent dark:bg-transparent border-0 appearance-none outline-none rounded-md hover:bg-foreground/10 dark:hover:bg-foreground/10 transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
+            aria-expanded={isMobileMenuOpen}
+            style={{ background: 'none', border: 'none' }}
           >
             {isMobileMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
@@ -95,13 +97,12 @@ const Header = () => {
             <nav className="flex flex-col px-4 py-4 space-y-4">
               <Link 
                 to="/projects" 
-                className="text-foreground hover:text-foreground font-semibold py-2"
+                className="text-foreground hover:text-foreground font-semibold py-2 text-left w-full"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Projects
               </Link>
-              <div className="flex items-center justify-between py-2">
-                <span className="text-foreground">Theme:</span>
+              <div className="flex items-center py-2">
                 <button
                   aria-label="Toggle dark mode"
                   onClick={handleToggleDark}
