@@ -57,49 +57,51 @@ const Home = () => {
         <p className="text-muted-foreground text-base sm:text-lg lg:text-xl my-6 sm:my-8 px-4 sm:px-8 lg:px-40 max-w-4xl">
           I have a strong foundation in AI, product development, and full-stack web technologies, and I build intelligent, user-focused tools that solve real-world problems.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 relative">
-          <button
-            ref={contactBtnRef}
-            className="bg-blue-600 text-white rounded-lg px-6 sm:px-8 py-3 text-base sm:text-lg font-medium shadow-md hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 h-12 flex items-center justify-center"
-            onClick={() => {
-              setShowContactBar((v) => {
-                if (v) {
-                  setTimeout(() => contactBtnRef.current && contactBtnRef.current.blur(), 0);
-                }
-                return !v;
-              });
-            }}
-          >
-            Contact me
-          </button>
-          {showContactBar && (
-            <div className="absolute left-1/2 -translate-x-1/2 -ml-[6px] top-full mt-4 flex items-center justify-center w-max z-20">
-              <div className="flex gap-6 px-8 py-3 rounded-full border border-border dark:border-gray-500 shadow bg-card/80 backdrop-blur">
-                <a
-                  href="https://www.linkedin.com/in/nirmendelson/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-blue-500 text-2xl"
-                  title="LinkedIn"
-                >
-                  <FaLinkedin />
-                </a>
-                <a
-                  href="#copy-email"
-                  onClick={handleCopyEmail}
-                  className="inline-flex items-center cursor-pointer relative"
-                  title="Copy email"
-                >
-                  <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="4" /><path d="M22 6.5 12 13 2 6.5" /></svg>
-                  {copied && (
-                    <span className="absolute left-1/2 -translate-x-1/2 top-full mt-1 text-gray-600 text-xs whitespace-nowrap select-none pointer-events-none">
-                      Email copied
-                    </span>
-                  )}
-                </a>
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center">
+          <div className="relative inline-block">
+            <button
+              ref={contactBtnRef}
+              className="bg-blue-600 text-white rounded-lg px-6 sm:px-8 py-3 text-base sm:text-lg font-medium shadow-md hover:bg-blue-700 transition focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 h-12 flex items-center justify-center"
+              onClick={() => {
+                setShowContactBar((v) => {
+                  if (v) {
+                    setTimeout(() => contactBtnRef.current && contactBtnRef.current.blur(), 0);
+                  }
+                  return !v;
+                });
+              }}
+            >
+              Contact me
+            </button>
+            {showContactBar && (
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-4 flex items-center justify-center w-max z-20">
+                <div className="flex gap-6 px-8 py-3 rounded-full border border-border dark:border-gray-500 shadow bg-card/80 backdrop-blur">
+                  <a
+                    href="https://www.linkedin.com/in/nirmendelson/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-blue-500 text-2xl"
+                    title="LinkedIn"
+                  >
+                    <FaLinkedin />
+                  </a>
+                  <a
+                    href="#copy-email"
+                    onClick={handleCopyEmail}
+                    className="inline-flex items-center cursor-pointer relative"
+                    title="Copy email"
+                  >
+                    <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="4" /><path d="M22 6.5 12 13 2 6.5" /></svg>
+                    {copied && (
+                      <span className="absolute left-1/2 -translate-x-1/2 top-full mt-1 text-gray-600 text-xs whitespace-nowrap select-none pointer-events-none">
+                        Email copied
+                      </span>
+                    )}
+                  </a>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </section>
       {/* Let's Work Together Section */}
