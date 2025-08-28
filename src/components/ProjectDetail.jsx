@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { projects } from './ProjectsPage'; // We'll import the projects array from ProjectsPage
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '../components/ui/carousel';
 import ReactMarkdown from 'react-markdown';
+import { trackProjectView } from '../utils/analytics';
 // import { Badge } from '../components/ui/badge'; // Uncomment if badge exists
 // import { Separator } from '../components/ui/separator'; // Uncomment if separator exists
 
@@ -33,6 +34,14 @@ const ProjectDetail = () => {
     projects.find(p => slugify(p.title) === slug),
     [slug]
   );
+
+  // Track project detail view
+  useEffect(() => {
+    if (project) {
+      trackProjectView(project.title);
+    }
+  }, [project]);
+
   // Placeholder meta data (replace with real data if available)
   const status = project?.status || 'In Progress';
   const lastUpdated = project?.lastUpdated || 'April 2024';

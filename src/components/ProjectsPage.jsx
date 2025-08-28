@@ -1,5 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { trackProjectView, trackProjectClick } from '../utils/analytics';
 
 const projects = [
   {
@@ -193,6 +194,16 @@ const ProjectsPage = () => {
   // Store video refs for each card so we can control playback on hover
   const videoRefs = useRef([]);
 
+  // Track page view when component mounts
+  useEffect(() => {
+    trackProjectView('projects_page');
+  }, []);
+
+  // Track when users click on projects
+  const handleProjectClick = (projectTitle) => {
+    trackProjectClick(projectTitle);
+  };
+
   // Handle mouse enter: start cycling screenshots
   const handleMouseEnter = (idx, screenshotsLength) => {
     // Avoid multiple intervals
@@ -253,6 +264,7 @@ const ProjectsPage = () => {
               className="relative flex flex-col sm:flex-row bg-card rounded-2xl shadow-lg border border-border p-3 sm:p-2 gap-3 sm:gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
               onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
               onMouseLeave={() => handleMouseLeave(idx)}
+              onClick={() => handleProjectClick(project.title)}
             >
               {isVideo ? (
                 <video

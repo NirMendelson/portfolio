@@ -6,8 +6,12 @@ import { Routes, Route } from 'react-router-dom'
 import ProjectsPage from './components/ProjectsPage'
 import ProjectDetail from './components/ProjectDetail'
 import Projects2Page from './components/Projects2Page';
+import { useAnalytics } from './hooks/useAnalytics';
 
 function App() {
+  // Track page views for analytics
+  useAnalytics();
+
   return (
     <>
       <Header />

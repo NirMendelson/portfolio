@@ -1,20 +1,32 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FaLinkedin } from 'react-icons/fa';
 import { projects } from './ProjectsPage';
 import { Link } from 'react-router-dom';
+import { trackContactClick } from '../utils/analytics';
 
 const Home = () => {
   const [showContactBar, setShowContactBar] = useState(false);
   const [copied, setCopied] = useState(false);
   const contactBtnRef = useRef(null);
 
+  // Track home page view
+  useEffect(() => {
+    // This will be tracked by the main useAnalytics hook in App.jsx
+    // But we can add additional home-specific tracking here if needed
+  }, []);
+
   const handleCopyEmail = async (e) => {
     e.preventDefault();
     try {
       await navigator.clipboard.writeText('nirmendelson98@gmail.com');
       setCopied(true);
+      trackContactClick('email_copy_home');
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {}
+  };
+
+  const handleContactClick = (method) => {
+    trackContactClick(method);
   };
 
   // --- Screenshot cycling for featured projects ---
@@ -82,6 +94,7 @@ const Home = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center text-blue-500 text-2xl"
                     title="LinkedIn"
+                    onClick={() => handleContactClick('linkedin_home')}
                   >
                     <FaLinkedin />
                   </a>

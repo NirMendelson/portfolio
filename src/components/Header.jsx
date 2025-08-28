@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaBars, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Sun, Moon } from 'lucide-react';
+import { trackNavigation, trackContactClick } from '../utils/analytics';
 
 const Header = () => {
   const [copied, setCopied] = useState(false);
@@ -38,10 +39,19 @@ const Header = () => {
     try {
       await navigator.clipboard.writeText('nirmendelson98@gmail.com');
       setCopied(true);
+      trackContactClick('email_copy');
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       // Optionally handle error
     }
+  };
+
+  const handleNavigation = (to) => {
+    trackNavigation('header', to);
+  };
+
+  const handleExternalLink = (platform) => {
+    trackContactClick(platform);
   };
 
   return (
@@ -49,12 +59,12 @@ const Header = () => {
       <header className="fixed top-0 left-0 w-full bg-background backdrop-blur z-50 border-b border-border">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
           <div className="flex items-center gap-2">
-            <Link to="/" className="font-bold text-xl sm:text-2xl text-foreground hover:text-foreground mx-2">Nir.</Link>
+            <Link to="/" className="font-bold text-xl sm:text-2xl text-foreground hover:text-foreground mx-2" onClick={() => handleNavigation('/')}>Nir.</Link>
           </div>
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/projects" className="text-foreground hover:text-foreground font-semibold">Projects</Link>
+            <Link to="/projects" className="text-foreground hover:text-foreground font-semibold" onClick={() => handleNavigation('/projects')}>Projects</Link>
             <button
               aria-label="Toggle dark mode"
               onClick={handleToggleDark}
@@ -63,10 +73,10 @@ const Header = () => {
             >
               {isDark ? <Moon strokeWidth={1.5} /> : <Sun strokeWidth={1.5} />}
             </button>
-            <a href="https://github.com/NirMendelson" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl">
+            <a href="https://github.com/NirMendelson" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl" onClick={() => handleExternalLink('github')}>
               <FaGithub />
             </a>
-            <a href="https://www.linkedin.com/in/nirmendelson/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl">
+            <a href="https://www.linkedin.com/in/nirmendelson/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl" onClick={() => handleExternalLink('linkedin')}>
               <FaLinkedin />
             </a>
             <a href="#copy-email" onClick={handleCopyEmail} className="inline-flex items-center cursor-pointer relative" title="Copy email">
@@ -98,7 +108,10 @@ const Header = () => {
               <Link 
                 to="/projects" 
                 className="text-foreground hover:text-foreground font-semibold py-2 text-left w-full"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  handleNavigation('/projects');
+                }}
               >
                 Projects
               </Link>
@@ -112,10 +125,10 @@ const Header = () => {
                 </button>
               </div>
               <div className="flex items-center gap-4 py-2">
-                <a href="https://github.com/NirMendelson" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl">
+                <a href="https://github.com/NirMendelson" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl" onClick={() => handleExternalLink('github')}>
                   <FaGithub />
                 </a>
-                <a href="https://www.linkedin.com/in/nirmendelson/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl">
+                <a href="https://www.linkedin.com/in/nirmendelson/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-blue-500 text-2xl" onClick={() => handleExternalLink('linkedin')}>
                   <FaLinkedin />
                 </a>
                 <a href="#copy-email" onClick={handleCopyEmail} className="inline-flex items-center cursor-pointer relative" title="Copy email">

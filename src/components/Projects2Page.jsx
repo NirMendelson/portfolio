@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from './ProjectsPage';
+import { trackProjectView, trackProjectClick } from '../utils/analytics';
 
 // Map project titles to logo images in public folder
 const projectLogos = {
@@ -24,6 +25,15 @@ const ArrowIcon = ({ className }) => (
 );
 
 const Projects2Page = () => {
+  // Track page view when component mounts
+  useEffect(() => {
+    trackProjectView('projects2_page');
+  }, []);
+
+  const handleProjectClick = (projectTitle) => {
+    trackProjectClick(projectTitle);
+  };
+
   return (
     <div className="min-h-screen py-10 w-full bg-background text-foreground">
       <h1 className="text-4xl font-semibold mt-6 mb-4 text-foreground text-left max-w-7xl mx-auto ">Projects</h1>
@@ -33,7 +43,9 @@ const Projects2Page = () => {
           <Link
             to={`/projects/${slugify(project.title)}`}
             key={idx}
-            className="relative flex flex-row items-start bg-card rounded-xl border border-border p-6 gap-3 transition-all duration-200 group cursor-pointer no-underline text-inherit min-h-[120px] shadow-sm hover:-translate-y-1 hover:shadow-md hover:shadow-black/10"          >
+            className="relative flex flex-row items-start bg-card rounded-xl border border-border p-6 gap-3 transition-all duration-200 group cursor-pointer no-underline text-inherit min-h-[120px] shadow-sm hover:-translate-y-1 hover:shadow-md hover:shadow-black/10"
+            onClick={() => handleProjectClick(project.title)}
+          >
             <img
               src={projectLogos[project.title] || project.image}
               alt={project.title}
