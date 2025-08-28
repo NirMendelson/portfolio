@@ -5,8 +5,8 @@ import { trackProjectView, trackProjectClick } from '../utils/analytics';
 
 // Map project titles to logo images in public folder
 const projectLogos = {
-  Rubybeam: '/RubybeamLogo.png',
-  MarketBuddy: '/marketBuddyLogo.png',
+  Rubybeam: '/rubybeam/RubybeamLogo.webp',
+  MarketBuddy: '/marketbuddy/marketBuddyLogo.webp',
   // Add more mappings as you add logos
 };
 
