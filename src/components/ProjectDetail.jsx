@@ -1,5 +1,8 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { projects } from './ProjectsPage'; // We'll import the projects array from ProjectsPage
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '../components/ui/carousel';
 import ReactMarkdown from 'react-markdown';
@@ -27,9 +30,7 @@ const getThumbnailSrc = (item) => {
   return null;
 };
 
-const ProjectDetail = () => {
-  const { slug } = useParams();
-  const navigate = useNavigate();
+const ProjectDetail = ({ slug }) => {
   const project = React.useMemo(() =>
     projects.find(p => slugify(p.title) === slug),
     [slug]
@@ -107,7 +108,7 @@ const ProjectDetail = () => {
     return (
       <div className="max-w-2xl mx-auto py-16 sm:py-20 px-4 sm:px-6 text-center">
         <h2 className="text-xl sm:text-2xl font-bold mb-4">Project not found</h2>
-        <button className="underline text-blue-600 text-sm sm:text-base" onClick={() => navigate(-1)}>Go Back</button>
+        <Link href="/projects" className="underline text-blue-600 text-sm sm:text-base">Go Back</Link>
       </div>
     );
   }

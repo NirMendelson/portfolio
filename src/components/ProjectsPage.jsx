@@ -1,5 +1,7 @@
+'use client'
+
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { trackProjectView, trackProjectClick } from '../utils/analytics';
 
 const projects = [
@@ -259,7 +261,7 @@ const ProjectsPage = () => {
 
           return (
             <Link
-              to={`/projects/${slugify(project.title)}`}
+              href={`/projects/${slugify(project.title)}`}
               key={idx}
               className="relative flex flex-col sm:flex-row bg-card rounded-2xl shadow-lg border border-border p-3 sm:p-2 gap-3 sm:gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
               onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}

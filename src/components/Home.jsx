@@ -1,8 +1,17 @@
+'use client'
+
 import React, { useState, useRef, useEffect } from 'react';
 import { FaLinkedin } from 'react-icons/fa';
 import { projects } from './ProjectsPage';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { trackContactClick } from '../utils/analytics';
+
+function slugify(title) {
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)+/g, '');
+}
 
 const Home = () => {
   const [showContactBar, setShowContactBar] = useState(false);
@@ -58,7 +67,7 @@ const Home = () => {
   return (
     <div className="flex flex-col w-full">
       <section className="flex flex-col items-center justify-center text-center w-full px-4 sm:px-6 lg:px-8 -mt-0 mb-16 sm:mb-24 lg:mb-32">
-        <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden mb-4 flex items-center justify-center mt-16 sm:mt-20 lg:mt-28">
+        <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden mb-4 flex items-center justify-center mt-24 sm:mt-32 lg:mt-40">
           <img src="/profile.webp" alt="Profile" className="w-full h-full object-cover" style={{ objectPosition: 'center' }} />
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight m-0 px-4">
@@ -67,7 +76,7 @@ const Home = () => {
           <span>and I love to build <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">AI products</span></span>
         </h1>
         <p className="text-muted-foreground text-base sm:text-lg lg:text-xl my-6 sm:my-8 px-4 sm:px-8 lg:px-40 max-w-4xl">
-          I have a strong foundation in AI, product development, and full-stack web technologies, and I build intelligent, user-focused tools that solve real-world problems.
+          I have a strong foundation in AI, product development, full stack web technologies, and I build intelligent, user focused tools that solve real world problems.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center">
           <div className="relative inline-block">
@@ -101,7 +110,7 @@ const Home = () => {
                   <a
                     href="#copy-email"
                     onClick={handleCopyEmail}
-                    className="inline-flex items-center cursor-pointer relative"
+                    className="inline-flex items-center cursor-pointer relative text-blue-500"
                     title="Copy email"
                   >
                     <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="4" /><path d="M22 6.5 12 13 2 6.5" /></svg>
@@ -145,7 +154,7 @@ const Home = () => {
           <a
             href="#copy-email"
             onClick={handleCopyEmail}
-            className="inline-flex items-center cursor-pointer relative"
+            className="inline-flex items-center cursor-pointer relative text-blue-500"
             title="Copy email"
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="4" /><path d="M22 6.5 12 13 2 6.5" /></svg>
@@ -162,7 +171,7 @@ const Home = () => {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 w-full gap-4 pl-2">
           <h2 className="text-2xl sm:text-3xl font-bold text-left">Featured Projects</h2>
           <Link
-            to="/projects"
+            href="/projects"
             className="inline-flex items-center gap-1 text-blue-600 text-sm sm:text-base font-normal hover:underline hover:text-blue-700 transition-colors"
             onClick={() => window.scrollTo(0, 0)}
           >
@@ -176,7 +185,7 @@ const Home = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6 items-center">
           {featuredProjects.map((project, idx) => (
             <Link
-              to={`/projects/${project.title.toLowerCase()}`}
+              href={`/projects/${slugify(project.title)}`}
               key={idx}
               className="relative flex flex-col sm:flex-row bg-card rounded-2xl shadow-lg border border-border p-3 sm:p-2 gap-3 sm:gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
               onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
