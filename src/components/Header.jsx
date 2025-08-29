@@ -55,13 +55,13 @@ const Header = () => {
   const handleExternalLink = (platform) => {
     trackContactClick(platform);
   };
-
+  
   return (
     <>
       <header className="fixed top-0 left-0 w-full bg-background backdrop-blur z-50 border-b border-border">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
           <div className="flex items-center gap-2">
-            <Link href="/" className="font-bold text-xl sm:text-2xl text-foreground hover:text-foreground mx-2" onClick={() => handleNavigation('/')}>Nir.</Link>
+            <Link href="/" className="font-bold text-xl sm:text-2xl text-foreground hover:text-foreground ml-0 mr-2" onClick={() => handleNavigation('/')}>Nir.</Link>
           </div>
           
           {/* Desktop Navigation */}

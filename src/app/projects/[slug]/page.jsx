@@ -23,12 +23,21 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }) {
+  // Await params first (Next.js 15 requirement)
+  const { slug } = await params;
+  
+  // Convert slug back to proper project title for clean tab names
+  const project = projects.find(p => slugify(p.title) === slug);
+  const projectTitle = project ? project.title : slug;
+  
   return {
-    title: `AI Project - ${params.slug} - Nir Mendelson`,
-    description: `Explore ${params.slug}, an AI-powered project built with cutting-edge artificial intelligence technology. See how AI agents and LLM applications solve real-world problems.`,
+    title: projectTitle,
+    description: `Explore ${projectTitle}, an AI-powered project built with cutting-edge artificial intelligence technology. See how AI agents and LLM applications solve real-world problems.`,
   }
 }
 
-export default function ProjectDetailPage({ params }) {
-  return <ProjectDetail slug={params.slug} />
+export default async function ProjectDetailPage({ params }) {
+  // Await params first (Next.js 15 requirement)
+  const { slug } = await params;
+  return <ProjectDetail slug={slug} />
 }

@@ -56,4 +56,70 @@
   body {
     @apply bg-background text-foreground;
   }
+  
+  /* Force scrollbar to always be visible */
+  html {
+    overflow-y: scroll !important;
+  }
+  
+  /* Ensure scrollbar is always visible on body too */
+  body {
+    overflow-y: scroll !important;
+    scrollbar-width: auto !important;
+    scrollbar-color: hsl(var(--muted)) transparent !important;
+  }
+  
+  /* Webkit scrollbar - ALWAYS visible with better contrast */
+  ::-webkit-scrollbar {
+    width: 12px !important;
+    background-color: transparent !important;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  
+  /* Light mode scrollbar - dark gray for visibility */
+  ::-webkit-scrollbar-thumb {
+    background: #6b7280 !important; /* Gray-500 for better contrast */
+    border-radius: 6px !important;
+    border: 2px solid transparent !important;
+    background-clip: content-box !important;
+    min-height: 40px !important;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #374151 !important; /* Gray-700 on hover */
+    background-clip: content-box !important;
+  }
+  
+  /* Dark mode scrollbar - lighter for visibility */
+  .dark ::-webkit-scrollbar-thumb {
+    background: #9ca3af !important; /* Gray-400 for dark mode */
+    border-radius: 6px !important;
+    border: 2px solid transparent !important;
+    background-clip: content-box !important;
+    min-height: 40px !important;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db !important; /* Gray-300 on hover in dark mode */
+    background-clip: content-box !important;
+  }
+  
+  /* Force scrollbar to be visible even when not scrolling */
+  ::-webkit-scrollbar-thumb:active {
+    background: #374151 !important;
+    background-clip: content-box !important;
+  }
+  
+  .dark ::-webkit-scrollbar-thumb:active {
+    background: #d1d5db !important;
+    background-clip: content-box !important;
+  }
+  
+  /* Additional force for webkit browsers */
+  ::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
 }

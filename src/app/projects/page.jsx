@@ -1,7 +1,7 @@
 import ProjectsPage from '@/components/ProjectsPage'
 
 export const metadata = {
-  title: 'AI Projects - Nir Mendelson',
+  title: 'Projects',
   description: 'Explore my AI-powered projects including AI agents, LLM applications, and innovative AI solutions. See how I build the future with artificial intelligence.',
 }
 
