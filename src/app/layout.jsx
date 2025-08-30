@@ -3,7 +3,11 @@ import './globals.css'
 import Header from '@/components/Header'
 import { AnalyticsProvider } from '@/hooks/useAnalytics'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+  preload: true
+})
 
 export const metadata = {
   title: 'Nir Mendelson - AI Builder',
@@ -19,6 +23,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        {/* Preload critical above-the-fold images */}
+        <link 
+          rel="preload" 
+          href="/profile.webp" 
+          as="image" 
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
       <body className={inter.className}>
         <AnalyticsProvider>
           <Header />

@@ -98,8 +98,6 @@
     background: #9ca3af !important; /* Gray-400 for dark mode */
     border-radius: 6px !important;
     border: 2px solid transparent !important;
-    background-clip: content-box !important;
-    min-height: 40px !important;
   }
   
   .dark ::-webkit-scrollbar-thumb:hover {
@@ -122,4 +120,20 @@
   ::-webkit-scrollbar-corner {
     background: transparent !important;
   }
+}
+
+/* Image loading optimizations */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Smooth fade-in for lazy loaded images */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
 }

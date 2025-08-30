@@ -154,7 +154,7 @@ const ProjectDetail = ({ slug }) => {
         </div>
       )}
       {/* Hero Section */}
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-6 tracking-tight text-foreground text-left mt-6 sm:mt-8 lg:mt-10">{project.title}</h1>
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-6 tracking-tight text-foreground text-left mt-12 sm:mt-8 lg:mt-10">{project.title}</h1>
 
       {/* Overview */}
       <section className="mb-8 sm:mb-10">
