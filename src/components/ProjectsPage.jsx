@@ -269,17 +269,27 @@ const ProjectsPage = () => {
               onClick={() => handleProjectClick(project.title)}
             >
               {isVideo ? (
-                <video
-                  ref={(el) => { videoRefs.current[idx] = el; }}
-                  src={mediaSource}
-                  className="w-full sm:w-72 h-48 rounded-lg object-cover bg-card border border-border"
-                  muted
-                  playsInline
-                  preload="none"
-                  loading="lazy"
-                  width="288"
-                  height="192"
-                />
+                <div className="relative w-full sm:w-72 h-48">
+                  <video
+                    ref={(el) => { videoRefs.current[idx] = el; }}
+                    src={mediaSource}
+                    className="w-full h-full rounded-lg object-cover bg-card border border-border"
+                    muted
+                    playsInline
+                    preload="metadata"
+                    loading="lazy"
+                    width="288"
+                    height="192"
+                    poster={project.screenshots && project.screenshots.length > 1 ? project.screenshots[1].src : undefined}
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-black/50 rounded-full p-3">
+                      <svg width="24" height="24" viewBox="0 0 24 24" className="text-white">
+                        <path fill="currentColor" d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               ) : (
                 <img
                   src={mediaSource}
@@ -289,11 +299,7 @@ const ProjectsPage = () => {
                   height="192"
                   loading="lazy"
                   decoding="async"
-                  onLoad={(e) => {
-                    // Ensure smooth loading
-                    e.target.style.opacity = '1';
-                  }}
-                  style={{ opacity: 0, transition: 'opacity 0.3s ease-in' }}
+                  style={{ transition: 'opacity 0.3s ease-in' }}
                 />
               )}
               <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center p-2">

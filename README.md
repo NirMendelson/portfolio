@@ -45,7 +45,7 @@ This project uses modern development practices:
 - Environment-based configuration
 - Automated deployment via GitHub Actions
 
-## Contact
+## 📧 Contact
 
 - **Email**: Nirmendelson98@gmail.com
 - **LinkedIn**: https://www.linkedin.com/in/nirmendelson/

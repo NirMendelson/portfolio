@@ -130,10 +130,5 @@ img {
 
 /* Smooth fade-in for lazy loaded images */
 img[loading="lazy"] {
-  opacity: 0;
   transition: opacity 0.3s ease-in;
-}
-
-img[loading="lazy"].loaded {
-  opacity: 1;
 }
