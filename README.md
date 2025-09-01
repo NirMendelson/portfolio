@@ -1,12 +1,55 @@
-# React + Vite
+# Nir Mendelson - Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website showcasing my projects and skills as a full-stack developer.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Visit: [nirmendelson.com](https://nirmendelson.com)
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React 19, Next.js 15
+- **Styling**: Tailwind CSS, shadcn/ui components
+- **Deployment**: Vercel with automated CI/CD
+- **Analytics**: Google Analytics 4
+
+## 🎯 Features
+
+- **Responsive Design**: Optimized for all devices
+- **Modern UI**: Clean, minimalist design using shadcn/ui
+- **Project Showcase**: Detailed project pages with images and descriptions
+- **Performance**: Optimized images and fast loading times
+- **SEO**: Meta tags and structured data for better search visibility
+- **Automated Deployment**: Vercel deployment for seamless updates
+
+## 🎨 Projects Featured
+
+- **Rubybeam**: AI-powered lead generation for influencer agencies
+- **MarketBuddy**: AI-powered shared grocery orders for students
+- **Shortcut Master**: AI-powered live shortcut suggestions and custom automation builder
+- **Scenario Simulator**: Multi-agent scenario brainstorming that turns world events into investable outcomes
+
+## 📊 Analytics & Performance
+
+- Google Analytics 4 integration for user behavior tracking
+- Optimized images with WebP format
+- Fast loading times with Next.js optimization
+- Mobile-first responsive design
+
+## 🔧 Development
+
+This project uses modern development practices:
+- ESLint for code quality
+- Tailwind CSS for styling
+- Component-based architecture
+- Environment-based configuration
+- Automated deployment via GitHub Actions
+
+## Contact
+
+- **Email**: Nirmendelson98@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/nirmendelson/
+- **GitHub**: https://github.com/NirMendelson
+
+---
+
