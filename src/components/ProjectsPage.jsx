@@ -6,6 +6,30 @@ import { trackProjectView, trackProjectClick } from '../utils/analytics';
 
 const projects = [
   {
+    title: 'RAG Optimizer Agent',
+    description: 'Agentic workflow that self-tunes a RAG pipeline',
+    overview: `RAG Optimizer Agent is an autonomous system that self-tunes a RAG pipeline until it reaches peak performance. The core insight is that static RAG treats all data the same- but different content types need different retrieval strategies. This agent runs a continuous loop of evaluate → diagnose → change → evaluate, committing improvements and rolling back regressions automatically.
+
+The optimization loop:
+
+1. Run a full evaluation suite against the current RAG configuration
+2. Agent analyzes failures and selects one parameter to change (chunk size, overlap, top-k, reranking thresholds, etc.)
+3. Re-evaluate the pipeline with the new configuration
+4. If accuracy improved, commit the change- if it regressed, roll back and try something else
+
+I built this to optimize a Monday.com support chatbot across 207 evaluation questions. Starting from a naive RAG baseline, the agent autonomously tuned retrieval parameters- reaching 99% accuracy without any manual intervention.
+
+The backend is built with FastAPI and uses the Claude API via the Anthropic SDK for the optimization agent. Firecrawl scrapes the source documentation into a vector database, and a live Server-Sent Events feed streams the optimization progress to the React frontend in real time.`,
+    technologies: ['Python', 'Claude API', 'FastAPI', 'Vector DB', 'Firecrawl', 'React', 'Vite'],
+    screenshots: [
+      { src: '/rag-optimizer/rag-demo.mp4', caption: 'Demo' }
+    ],
+    tags: ['Agentic RAG', 'Self-Optimizing', 'Claude API'],
+    image: '/rag-optimizer/rag-demo.mp4',
+    link: '#',
+  },
+
+  {
     title: 'Rubybeam',
     description: 'AI-powered lead generation for influencer agencies',
     overview: `Rubybeam is an AI tool that automates the sponsorship outreach process for influencer agencies. It identifies relevant brands for each YouTuber and generates personalized pitch emails at scale. The system reduces manual work, improves targeting accuracy, and helps agencies close more deals, faster.

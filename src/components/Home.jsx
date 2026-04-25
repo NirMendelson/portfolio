@@ -39,9 +39,10 @@ const Home = () => {
   };
 
   // --- Screenshot cycling for featured projects ---
-  const featuredProjects = projects.filter(p => p.title === 'Rubybeam' || p.title === 'MarketBuddy');
+  const featuredProjects = projects.filter(p => p.title === 'RAG Optimizer Agent' || p.title === 'Rubybeam');
   const [screenshotIndexes, setScreenshotIndexes] = useState(Array(featuredProjects.length).fill(0));
   const intervalRefs = useRef([]);
+  const videoRefs = useRef([]);
 
   const handleMouseEnter = (idx, screenshotsLength) => {
     if (intervalRefs.current[idx]) return;
@@ -52,6 +53,10 @@ const Home = () => {
         return next;
       });
     }, 1000);
+    const video = videoRefs.current[idx];
+    if (video) {
+      try { video.loop = true; video.muted = true; video.play(); } catch (_) {}
+    }
   };
 
   const handleMouseLeave = (idx) => {
@@ -62,6 +67,10 @@ const Home = () => {
       next[idx] = 0;
       return next;
     });
+    const video = videoRefs.current[idx];
+    if (video) {
+      try { video.pause(); video.currentTime = 0; } catch (_) {}
+    }
   };
 
   return (
@@ -201,11 +210,37 @@ const Home = () => {
               onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
               onMouseLeave={() => handleMouseLeave(idx)}
             >
-              <img
-                src={project.screenshots && project.screenshots.length > 0 ? project.screenshots[screenshotIndexes[idx]].src : project.image}
-                alt={project.title}
-                className="w-full sm:w-72 h-48 rounded-lg object-cover bg-muted border border-border"
-              />
+              {(() => {
+                const mediaSrc = project.screenshots && project.screenshots.length > 0 ? project.screenshots[screenshotIndexes[idx]].src : project.image;
+                const isVideo = typeof mediaSrc === 'string' && mediaSrc.toLowerCase().endsWith('.mp4');
+                return isVideo ? (
+                  <div className="relative w-full sm:w-72 h-48">
+                    <video
+                      ref={(el) => { videoRefs.current[idx] = el; }}
+                      src={mediaSrc}
+                      className="w-full h-full rounded-lg object-cover bg-muted border border-border"
+                      muted
+                      playsInline
+                      preload="metadata"
+                      width="288"
+                      height="192"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="bg-black/50 rounded-full p-3">
+                        <svg width="24" height="24" viewBox="0 0 24 24" className="text-white">
+                          <path fill="currentColor" d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <img
+                    src={mediaSrc}
+                    alt={project.title}
+                    className="w-full sm:w-72 h-48 rounded-lg object-cover bg-muted border border-border"
+                  />
+                );
+              })()}
               <div className="flex-1 flex flex-col justify-center gap-1 h-full items-center text-center overflow-hidden p-2">
                 <h3 className="text-lg sm:text-xl font-semibold text-card-foreground">{project.title}</h3>
                 <p className="text-muted-foreground text-sm sm:text-base">{project.description}</p>
