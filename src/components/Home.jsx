@@ -75,8 +75,8 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-full">
-      <section className="flex flex-col items-center justify-center text-center w-full px-4 sm:px-6 lg:px-8 -mt-0 mb-16 sm:mb-24 lg:mb-32">
-        <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden mb-4 flex items-center justify-center mt-24 sm:mt-32 lg:mt-40">
+      <section className="flex flex-col items-center justify-center text-center w-full px-4 sm:px-6 lg:px-8 -mt-0 mb-64 sm:mb-24 lg:mb-32">
+        <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-40 lg:h-40 rounded-full overflow-hidden mb-8 sm:mb-4 flex items-center justify-center mt-24 sm:mt-32 lg:mt-40">
           <img 
             src="/profile.webp" 
             alt="Profile" 
