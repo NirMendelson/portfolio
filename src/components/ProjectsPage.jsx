@@ -27,6 +27,8 @@ The backend is built with FastAPI and uses the Claude API via the Anthropic SDK 
     tags: ['Agentic RAG', 'Self-Optimizing', 'Claude API'],
     image: '/rag-optimizer/rag-demo.mp4',
     link: '#',
+    demoUrl: 'https://monday-support-agent.vercel.app/',
+    disclaimer: 'This is an independent demo project built for research and learning purposes. It is not affiliated with, endorsed by, or related to Monday.com in any way.',
   },
 
   {

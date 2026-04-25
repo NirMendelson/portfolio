@@ -156,6 +156,25 @@ const ProjectDetail = ({ slug }) => {
       {/* Hero Section */}
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4 sm:mb-6 tracking-tight text-foreground text-left mt-12 sm:mt-8 lg:mt-10">{project.title}</h1>
 
+      {/* Live Demo */}
+      {project.demoUrl && (
+        <div className="mb-6 p-4 rounded-xl border border-border bg-card flex flex-col sm:flex-row sm:items-center gap-3">
+          <p className="text-sm sm:text-base text-muted-foreground flex-1">
+            You can try out a live demo of this project at{' '}
+            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline break-all">{project.demoUrl}</a>
+          </p>
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
+          >
+            Try it live
+            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7" strokeLinecap="round" strokeLinejoin="round"/><path d="M7 7h10v10" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </a>
+        </div>
+      )}
+
       {/* Overview */}
       <section className="mb-8 sm:mb-10">
         <h2 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3 text-foreground text-left">📌 Overview</h2>
@@ -315,6 +334,11 @@ const ProjectDetail = ({ slug }) => {
           </div>
         </div>
       </section>
+
+      {/* Disclaimer */}
+      {project.disclaimer && (
+        <p className="mt-6 text-xs text-muted-foreground border-t border-border pt-4">{project.disclaimer}</p>
+      )}
     </main>
   );
 };
