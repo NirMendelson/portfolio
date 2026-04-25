@@ -236,13 +236,14 @@ const ProjectDetail = ({ slug }) => {
                     {isVideo ? (
                       <>
                         <video
+                          ref={(el) => { if (el) el.oncanplay = () => { try { el.currentTime = 6; } catch (_) {} }; }}
                           className="max-h-full max-w-full pointer-events-none"
                           muted
                           playsInline
-                          preload="metadata"
+                          preload="auto"
                           poster={thumb || undefined}
                         >
-                          <source src={src} />
+                          <source src={`${src}#t=6`} />
                         </video>
                         <span className="absolute inset-0 flex items-center justify-center">
                           <svg width="56" height="56" viewBox="0 0 24 24" className="text-white/90 drop-shadow">
@@ -286,13 +287,14 @@ const ProjectDetail = ({ slug }) => {
                           {isVideo ? (
                             <>
                               <video
+                                ref={(el) => { if (el) el.oncanplay = () => { try { el.currentTime = 6; } catch (_) {} }; }}
                                 className="max-h-full max-w-full pointer-events-none"
                                 muted
                                 playsInline
-                                preload="metadata"
+                                preload="auto"
                                 poster={thumb || undefined}
                               >
-                                <source src={src} />
+                                <source src={`${src}#t=6`} />
                               </video>
                               <span className="absolute inset-0 flex items-center justify-center">
                                 <svg width="56" height="56" viewBox="0 0 24 24" className="text-white/90 drop-shadow">

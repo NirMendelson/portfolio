@@ -39,7 +39,7 @@ const Home = () => {
   };
 
   // --- Screenshot cycling for featured projects ---
-  const featuredProjects = projects.filter(p => p.title === 'RAG Optimizer Agent' || p.title === 'Rubybeam');
+  const featuredProjects = projects.filter(p => p.title === 'RAG Optimizer Agent' || p.title === 'Onboarding Agent');
   const [screenshotIndexes, setScreenshotIndexes] = useState(Array(featuredProjects.length).fill(0));
   const intervalRefs = useRef([]);
   const videoRefs = useRef([]);
@@ -55,7 +55,7 @@ const Home = () => {
     }, 1000);
     const video = videoRefs.current[idx];
     if (video) {
-      try { video.loop = true; video.muted = true; video.play(); } catch (_) {}
+      try { video.currentTime = 0; video.loop = true; video.muted = true; video.play(); } catch (_) {}
     }
   };
 
@@ -69,7 +69,7 @@ const Home = () => {
     });
     const video = videoRefs.current[idx];
     if (video) {
-      try { video.pause(); video.currentTime = 0; } catch (_) {}
+      try { video.pause(); video.currentTime = 6; } catch (_) {}
     }
   };
 
@@ -147,31 +147,67 @@ const Home = () => {
       </section>
       {/* About Me Section */}
       <section className="flex flex-col items-start text-left w-full max-w-5xl mt-12 sm:mt-16 lg:mt-40 mb-36 sm:mb-40 lg:mb-44 px-4 sm:px-8 lg:px-12 mx-auto">
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">About me</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">About me</h2>
+        {/* Bio text */}
+        <div className="flex flex-col gap-4 mb-12 max-w-3xl">
+          <p className="text-muted-foreground text-base leading-relaxed">
+            I&apos;m an AI Engineer with 2 years of hands-on experience shipping AI systems into production. I combine a technical foundation with a builder&apos;s mindset- identifying real problems, prototyping fast, and iterating on solutions in live environments.
+          </p>
+          <p className="text-muted-foreground text-base leading-relaxed">
+            I&apos;m comfortable across the full stack: Python, TypeScript, Node.js, vector databases, prompt engineering and LLM APIs, workflow orchestration, lightweight backend logic, and integrating systems via APIs and webhooks.
+          </p>
+          <p className="text-muted-foreground text-base leading-relaxed">
+            I love creating AI agentic workflows- automating existing processes and building entirely new ones that would be impossible without LLMs.
+          </p>
+          <p className="text-muted-foreground text-base leading-relaxed">
+            What drives me: turning emerging AI capabilities into measurable business value. I experiment relentlessly, stay current with new tools and architectures, and document patterns others can build on.
+          </p>
+        </div>
+
+        {/* Timeline subheading */}
+        <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-6">My Timeline</h3>
+
         <div className="relative w-full">
-          {/* Vertical timeline line */}
-          <div className="absolute left-3 top-2 bottom-2 w-px bg-border" />
-          <div className="flex flex-col gap-5 pl-10">
+          {/* Vertical timeline line — thick gradient bar, centered at left-4 */}
+          <div className="absolute left-4 top-3 bottom-3 w-[3px] rounded-full -translate-x-1/2 bg-gradient-to-b from-indigo-500/80 via-violet-500/60 to-cyan-400/30" />
+          <div className="flex flex-col gap-4">
             {[
               {
-                title: 'AI Engineer, Quack AI (AUI)',
+                title: 'AI Engineer',
+                org: 'Quack AI (AUI)',
                 description: 'Building production RAG systems and AI Agent workflows. Quack was acquired by AUI.',
+                tag: 'Current',
+                tagColor: 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30',
+                dotColor: 'bg-indigo-500 shadow-[0_0_12px_3px_rgba(99,102,241,0.55)]',
               },
               {
-                title: 'Founder, AI Agent Startup',
-                description: 'Built a platform helping influencer agencies close deals at scale. Funded by Cactus Capital during university.',
+                title: 'Founder',
+                org: 'RubyBeam',
+                description: 'Built an AI agent that helped influencer agencies close more deals. Funded by Cactus Capital.',
+                tag: 'Startup',
+                tagColor: 'bg-violet-500/15 text-violet-400 border-violet-500/30',
+                dotColor: 'bg-violet-500 shadow-[0_0_12px_3px_rgba(139,92,246,0.55)]',
               },
               {
-                title: 'Intelligence Officer, IDF — Shaldag Special Operations',
+                title: 'Intelligence Officer',
+                org: 'IDF - Shaldag Special Operations',
                 description: 'Identified critical operational needs and designed special operations missions to resolve them.',
+                tag: 'Service',
+                tagColor: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/30',
+                dotColor: 'bg-cyan-400 shadow-[0_0_12px_3px_rgba(34,211,238,0.45)]',
               },
             ].map((item, i) => (
-              <div key={i} className="relative">
-                {/* Timeline dot */}
-                <div className="absolute -left-[1.65rem] top-5 w-2.5 h-2.5 rounded-full bg-muted-foreground/60 border-2 border-background" />
-                <div className="rounded-xl border border-border bg-card px-5 py-4">
-                  <p className="font-semibold text-foreground text-sm sm:text-base">{item.title}</p>
-                  <p className="text-muted-foreground text-sm mt-1">{item.description}</p>
+              <div key={i} className="relative flex items-start gap-5 pl-10">
+                {/* Glowing dot — centered on the line via -translate-x-1/2 at left-4 */}
+                <div className={`absolute left-4 top-[1.1rem] w-3.5 h-3.5 rounded-full -translate-x-1/2 border-2 border-background ${item.dotColor}`} />
+                <div className="flex-1 rounded-2xl border-2 border-border bg-card/70 backdrop-blur-sm px-5 py-4 hover:border-border/80 hover:bg-card transition-colors duration-200">
+                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                    <span className="font-semibold text-foreground text-sm sm:text-base">{item.title}</span>
+                    <span className="text-muted-foreground/50 text-sm hidden sm:inline">·</span>
+                    <span className="text-muted-foreground text-sm font-medium">{item.org}</span>
+                    <span className={`ml-auto text-[11px] font-medium px-2.5 py-0.5 rounded-full border ${item.tagColor}`}>{item.tag}</span>
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -209,12 +245,15 @@ const Home = () => {
                 return isVideo ? (
                   <div className="relative w-full sm:w-72 h-48">
                     <video
-                      ref={(el) => { videoRefs.current[idx] = el; }}
-                      src={mediaSrc}
+                      ref={(el) => {
+                        videoRefs.current[idx] = el;
+                        if (el) el.oncanplay = () => { try { el.currentTime = 6; } catch (_) {} };
+                      }}
+                      src={`${mediaSrc}#t=6`}
                       className="w-full h-full rounded-lg object-cover bg-muted border border-border"
                       muted
                       playsInline
-                      preload="metadata"
+                      preload="auto"
                       width="288"
                       height="192"
                     />

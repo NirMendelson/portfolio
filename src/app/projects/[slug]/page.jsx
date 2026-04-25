@@ -3,6 +3,7 @@ import ProjectDetail from '@/components/ProjectDetail'
 // Import projects to generate static params
 const projects = [
   { title: 'RAG Optimizer Agent' },
+  { title: 'Onboarding Agent' },
   { title: 'Rubybeam' },
   { title: 'MarketBuddy' },
   { title: 'Shortcut Master' },

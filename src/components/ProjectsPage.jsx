@@ -32,6 +32,36 @@ The backend is built with FastAPI and uses the Claude API via the Anthropic SDK 
   },
 
   {
+    title: 'Onboarding Agent',
+    description: 'Agentic workflow for automating complex onboarding processes',
+    overview: `75% of customers abandon a product in their first week. One of the leading causes: onboarding a complex workspace tool is slow, manual, and overwhelming. For platforms like Monday.com, getting a team fully set up can take hours of configuration across boards, automations, and integrations- time most users won't invest before churning.
+
+Onboarding Agent solves this by automating the entire onboarding process. Given a company URL, the agent researches the company using enrichment tools and then auto-configures a complete workspace tailored to their specific needs.
+
+The agent pipeline runs 8 sequential steps:
+
+1. Fetch company profile- name, stage, ARR, headcount
+2. Map departments- engineering, sales, marketing, ops, and more
+3. Extract use cases- sprint tracking, deal pipelines, content calendars
+4. Gather company insights- PR activity, support signals, org structure
+5. Detect integrations- GitHub, Slack, Linear, Notion, Figma, Vercel, Stripe, Datadog
+6. Map partnerships and strategic relationships
+7. Generate a workspace configuration as structured JSON
+8. Finalize and provision boards, automations, and integration wiring
+
+The result is a fully configured workspace- 6+ boards, 5+ automations, and all integrations pre-wired- delivered in seconds instead of hours. A live UI visualizes each extraction step in real time as the agent works.
+
+The system is built with Python and the Claude API for the core agentic reasoning. Clearbit powers company enrichment, and the frontend is built with Next.js and Framer Motion for a polished, real-time demo experience.`,
+    technologies: ['Python', 'Claude API', 'Next.js', 'Clearbit', 'Framer Motion', 'TypeScript'],
+    screenshots: [
+      { src: '/onboarding-agent/OnboardingAgent.mp4', caption: 'Demo' }
+    ],
+    tags: ['AI Agents', 'Claude API', 'Data Enrichment'],
+    image: '/onboarding-agent/OnboardingAgent.mp4',
+    link: '#',
+  },
+
+  {
     title: 'Rubybeam',
     description: 'AI-powered lead generation for influencer agencies',
     overview: `Rubybeam is an AI tool that automates the sponsorship outreach process for influencer agencies. It identifies relevant brands for each YouTuber and generates personalized pitch emails at scale. The system reduces manual work, improves targeting accuracy, and helps agencies close more deals, faster.
