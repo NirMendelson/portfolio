@@ -158,19 +158,22 @@ const ProjectDetail = ({ slug }) => {
 
       {/* Live Demo */}
       {project.demoUrl && (
-        <div className="mb-6 p-4 rounded-xl border border-border bg-card flex flex-col sm:flex-row sm:items-center gap-3">
-          <p className="text-sm sm:text-base text-muted-foreground flex-1">
-            You can try out a live demo of this project at{' '}
-            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline break-all">{project.demoUrl}</a>
-          </p>
+        <div className="mb-6 p-4 rounded-xl border border-border bg-card flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="text-xl">🚀</span>
+            <div>
+              <p className="text-sm font-semibold text-foreground leading-tight">Live Demo</p>
+              <p className="text-xs text-muted-foreground mt-0.5">Try out this project in your browser</p>
+            </div>
+          </div>
           <a
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
+            className="inline-flex items-center gap-2 bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap shrink-0"
           >
             Try it live
-            <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7" strokeLinecap="round" strokeLinejoin="round"/><path d="M7 7h10v10" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7" strokeLinecap="round" strokeLinejoin="round"/><path d="M7 7h10v10" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </a>
         </div>
       )}
