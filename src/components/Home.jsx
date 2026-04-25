@@ -145,44 +145,37 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* Let's Work Together Section */}
-      <section className="flex flex-col items-start justify-center text-left w-full max-w-5xl mt-12 sm:mt-16 lg:mt-40 mb-36 sm:mb-40 lg:mb-44 px-4 sm:px-8 lg:px-12 mx-auto">        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">Let's Work Together</h2>
-        <p className="text-base sm:text-lg mb-6">
-        Whether you're a company looking to prototype an AI product, build internal tools, or explore automation, or an individual with a bold idea and no clue where to start - I can help you bring it to life.
-        </p>
-        <div className="mb-6">
-          <span className="font-semibold text-base sm:text-lg">What I offer:</span>
-          <ul className="list-disc list-inside mt-2 space-y-1 text-base sm:text-lg">
-            <li><span className="font-medium">AI-powered MVPs</span>- fast, functional, and tailored to your use case</li>
-            <li><span className="font-medium">Automation & Internal Tools</span>- streamline workflows using AI and modern web tech</li>
-            <li><span className="font-medium">Product Strategy & Tech Guidance</span>- helping you make the right early decisions</li>
-          </ul>
-        </div>
-        <p className="text-base sm:text-lg mb-6">If you're building something interesting, I'd love to hear about it.</p>
-        {/* Contact Capsule (reuse) */}
-        <div className="flex gap-4 sm:gap-6 px-6 sm:px-8 py-3 rounded-full border border-border dark:border-gray-500 shadow bg-card/80 backdrop-blur items-center w-max">
-          <a
-            href="https://www.linkedin.com/in/nirmendelson/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center text-blue-500 text-2xl"
-            title="LinkedIn"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="#copy-email"
-            onClick={handleCopyEmail}
-            className="inline-flex items-center cursor-pointer relative text-blue-500"
-            title="Copy email"
-          >
-            <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="4" /><path d="M22 6.5 12 13 2 6.5" /></svg>
-            {copied && (
-              <span className="absolute left-1/2 -translate-x-1/2 top-full mt-1 text-gray-600 text-xs whitespace-nowrap select-none pointer-events-none">
-                Email copied
-              </span>
-            )}
-          </a>
+      {/* About Me Section */}
+      <section className="flex flex-col items-start text-left w-full max-w-5xl mt-12 sm:mt-16 lg:mt-40 mb-36 sm:mb-40 lg:mb-44 px-4 sm:px-8 lg:px-12 mx-auto">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-8">About me</h2>
+        <div className="relative w-full">
+          {/* Vertical timeline line */}
+          <div className="absolute left-3 top-2 bottom-2 w-px bg-border" />
+          <div className="flex flex-col gap-5 pl-10">
+            {[
+              {
+                title: 'AI Engineer, Quack AI (AUI)',
+                description: 'Building production RAG systems and AI Agent workflows. Quack was acquired by AUI.',
+              },
+              {
+                title: 'Founder, AI Agent Startup',
+                description: 'Built a platform helping influencer agencies close deals at scale. Funded by Cactus Capital during university.',
+              },
+              {
+                title: 'Intelligence Officer, IDF — Shaldag Special Operations',
+                description: 'Identified critical operational needs and designed special operations missions to resolve them.',
+              },
+            ].map((item, i) => (
+              <div key={i} className="relative">
+                {/* Timeline dot */}
+                <div className="absolute -left-[1.65rem] top-5 w-2.5 h-2.5 rounded-full bg-muted-foreground/60 border-2 border-background" />
+                <div className="rounded-xl border border-border bg-card px-5 py-4">
+                  <p className="font-semibold text-foreground text-sm sm:text-base">{item.title}</p>
+                  <p className="text-muted-foreground text-sm mt-1">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
       {/* Projects Preview Section */}
