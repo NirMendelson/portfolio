@@ -151,7 +151,7 @@ const Home = () => {
         {/* Bio text */}
         <div className="flex flex-col gap-4 mb-12 max-w-3xl">
           <p className="text-muted-foreground text-base leading-relaxed">
-            I&apos;m an AI Engineer with 2 years of hands-on experience shipping AI systems into production. I combine a technical foundation with a builder&apos;s mindset- identifying real problems, prototyping fast, and iterating on solutions in live environments.
+            I&apos;m a full-stack engineer and AI builder with 2 years of hands-on experience shipping production systems. I combine a technical foundation with a builder&apos;s mindset- identifying real problems, prototyping fast, and iterating on solutions in live environments.
           </p>
           <p className="text-muted-foreground text-base leading-relaxed">
             I&apos;m comfortable across the full stack: Python, TypeScript, Node.js, vector databases, prompt engineering and LLM APIs, workflow orchestration, lightweight backend logic, and integrating systems via APIs and webhooks.
@@ -169,43 +169,53 @@ const Home = () => {
 
         <div className="relative w-full">
           {/* Vertical timeline line — thick gradient bar, centered at left-4 */}
-          <div className="absolute left-4 top-3 bottom-3 w-[3px] rounded-full -translate-x-1/2 bg-gradient-to-b from-indigo-500/80 via-violet-500/60 to-cyan-400/30" />
+          <div className="absolute left-4 top-3 bottom-3 w-[3px] rounded-full -translate-x-1/2 bg-[linear-gradient(to_bottom,rgba(236,72,153,0.78),rgba(217,70,239,0.62),rgba(139,92,246,0.54),rgba(59,130,246,0.36))]" />
           <div className="flex flex-col gap-4">
             {[
               {
                 title: 'AI Engineer',
+                org: 'REAL.dev',
+                description: 'Building AI harnesses and intelligent workflows used by Fortune 100 companies.',
+                tag: 'Current',
+                tagColor: 'bg-pink-500/15 text-pink-400 border-pink-500/30',
+                dotColor: 'bg-pink-500 shadow-[0_0_12px_3px_rgba(236,72,153,0.5)]',
+              },
+              {
+                title: 'AI Engineer',
                 org: 'Quack AI (AUI)',
                 description: 'Building production RAG systems and AI Agent workflows. Quack was acquired by AUI.',
-                tag: 'Current',
-                tagColor: 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30',
-                dotColor: 'bg-indigo-500 shadow-[0_0_12px_3px_rgba(99,102,241,0.55)]',
+                tag: 'Startup',
+                tagColor: 'bg-fuchsia-500/15 text-fuchsia-400 border-fuchsia-500/30',
+                dotColor: 'bg-fuchsia-500 shadow-[0_0_12px_3px_rgba(217,70,239,0.45)]',
               },
               {
                 title: 'Founder',
                 org: 'RubyBeam',
                 description: 'Built an AI agent that helped influencer agencies close more deals. Funded by Cactus Capital.',
-                tag: 'Startup',
+                tag: 'Entrepreneur',
                 tagColor: 'bg-violet-500/15 text-violet-400 border-violet-500/30',
-                dotColor: 'bg-violet-500 shadow-[0_0_12px_3px_rgba(139,92,246,0.55)]',
+                dotColor: 'bg-violet-500 shadow-[0_0_12px_3px_rgba(139,92,246,0.5)]',
               },
               {
                 title: 'Intelligence Officer',
                 org: 'IDF - Shaldag Special Operations',
                 description: 'Identified critical operational needs and designed special operations missions to resolve them.',
                 tag: 'Service',
-                tagColor: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/30',
-                dotColor: 'bg-cyan-400 shadow-[0_0_12px_3px_rgba(34,211,238,0.45)]',
+                tagColor: 'bg-blue-500/15 text-blue-400 border-blue-500/30',
+                dotColor: 'bg-blue-500 shadow-[0_0_12px_3px_rgba(59,130,246,0.45)]',
               },
             ].map((item, i) => (
               <div key={i} className="relative flex items-start gap-5 pl-10">
                 {/* Glowing dot — centered on the line via -translate-x-1/2 at left-4 */}
                 <div className={`absolute left-4 top-[1.1rem] w-3.5 h-3.5 rounded-full -translate-x-1/2 border-2 border-background ${item.dotColor}`} />
                 <div className="flex-1 rounded-2xl border-2 border-border bg-card/70 backdrop-blur-sm px-5 py-4 hover:border-border/80 hover:bg-card transition-colors duration-200">
-                  <div className="flex flex-wrap items-center gap-2 mb-1.5">
-                    <span className="font-semibold text-foreground text-sm sm:text-base">{item.title}</span>
-                    <span className="text-muted-foreground/50 text-sm hidden sm:inline">·</span>
-                    <span className="text-muted-foreground text-sm font-medium">{item.org}</span>
-                    <span className={`ml-auto text-[11px] font-medium px-2.5 py-0.5 rounded-full border ${item.tagColor}`}>{item.tag}</span>
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between mb-1.5">
+                    <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <span className="font-semibold text-foreground text-sm sm:text-base">{item.title}</span>
+                      <span className="text-muted-foreground/50 text-sm hidden sm:inline">·</span>
+                      <span className="text-muted-foreground text-sm font-medium">{item.org}</span>
+                    </div>
+                    <span className={`w-fit shrink-0 text-[11px] font-medium px-2.5 py-0.5 rounded-full border ${item.tagColor}`}>{item.tag}</span>
                   </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.description}</p>
                 </div>
