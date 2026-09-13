@@ -4,6 +4,19 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { trackProjectView, trackProjectClick } from '../utils/analytics';
 
+const VIDEO_PREVIEW_TIME = 3;
+
+function showVideoPreviewFrame(video, previewTime = VIDEO_PREVIEW_TIME) {
+  if (!video) return;
+
+  try {
+    const safePreviewTime = Number.isFinite(video.duration)
+      ? Math.min(previewTime, Math.max(0, video.duration - 0.1))
+      : previewTime;
+    video.currentTime = safePreviewTime;
+  } catch (_) { }
+}
+
 const projects = [
   {
     title: 'RAG Optimizer Agent',
@@ -57,6 +70,7 @@ The system is built with Python and the Claude API for the core agentic reasonin
     ],
     tags: ['AI Agents', 'Claude API', 'Data Enrichment'],
     image: '/onboarding-agent/OnboardingAgent.mp4',
+    previewTime: 5,
     link: '#',
   },
 
@@ -277,6 +291,7 @@ const ProjectsPage = () => {
     const video = videoRefs.current[idx];
     if (video) {
       try {
+        video.currentTime = 0;
         video.loop = true;
         video.muted = true;
         video.play();
@@ -285,7 +300,7 @@ const ProjectsPage = () => {
   };
 
   // Handle mouse leave: stop cycling and reset
-  const handleMouseLeave = (idx) => {
+  const handleMouseLeave = (idx, previewTime) => {
     clearInterval(intervalRefs.current[idx]);
     intervalRefs.current[idx] = null;
     setScreenshotIndexes(prev => {
@@ -294,12 +309,12 @@ const ProjectsPage = () => {
       return next;
     });
 
-    // Pause and reset video when not hovering
+    // Pause and show a useful preview frame when not hovering
     const video = videoRefs.current[idx];
     if (video) {
       try {
         video.pause();
-        video.currentTime = 0;
+        showVideoPreviewFrame(video, previewTime);
       } catch (_) { }
     }
   };
@@ -313,6 +328,7 @@ const ProjectsPage = () => {
           const hasScreenshots = project.screenshots && project.screenshots.length > 0;
           const mediaSource = hasScreenshots ? project.screenshots[screenshotIndexes[idx]].src : project.image;
           const isVideo = typeof mediaSource === 'string' && mediaSource.toLowerCase().endsWith('.mp4');
+          const previewTime = project.previewTime ?? VIDEO_PREVIEW_TIME;
 
           return (
             <Link
@@ -320,18 +336,19 @@ const ProjectsPage = () => {
               key={idx}
               className="relative flex flex-col sm:flex-row bg-card rounded-2xl shadow-lg border border-border p-3 sm:p-2 gap-3 sm:gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
               onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
-              onMouseLeave={() => handleMouseLeave(idx)}
+              onMouseLeave={() => handleMouseLeave(idx, previewTime)}
               onClick={() => handleProjectClick(project.title)}
             >
               {isVideo ? (
                 <div className="relative w-full sm:w-72 h-48">
                   <video
                     ref={(el) => { videoRefs.current[idx] = el; }}
-                    src={mediaSource}
+                    src={`${mediaSource}#t=${previewTime}`}
                     className="w-full h-full rounded-lg object-cover bg-card border border-border"
                     muted
                     playsInline
                     preload="metadata"
+                    onLoadedMetadata={(event) => showVideoPreviewFrame(event.currentTarget, previewTime)}
                     loading="lazy"
                     width="288"
                     height="192"

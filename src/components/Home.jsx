@@ -6,6 +6,19 @@ import { projects } from './ProjectsPage';
 import Link from 'next/link';
 import { trackContactClick } from '../utils/analytics';
 
+const VIDEO_PREVIEW_TIME = 3;
+
+function showVideoPreviewFrame(video, previewTime = VIDEO_PREVIEW_TIME) {
+  if (!video) return;
+
+  try {
+    const safePreviewTime = Number.isFinite(video.duration)
+      ? Math.min(previewTime, Math.max(0, video.duration - 0.1))
+      : previewTime;
+    video.currentTime = safePreviewTime;
+  } catch (_) {}
+}
+
 function slugify(title) {
   return title
     .toLowerCase()
@@ -59,7 +72,7 @@ const Home = () => {
     }
   };
 
-  const handleMouseLeave = (idx) => {
+  const handleMouseLeave = (idx, previewTime) => {
     clearInterval(intervalRefs.current[idx]);
     intervalRefs.current[idx] = null;
     setScreenshotIndexes(prev => {
@@ -69,7 +82,10 @@ const Home = () => {
     });
     const video = videoRefs.current[idx];
     if (video) {
-      try { video.pause(); video.currentTime = 6; } catch (_) {}
+      try {
+        video.pause();
+        showVideoPreviewFrame(video, previewTime);
+      } catch (_) {}
     }
   };
 
@@ -247,23 +263,22 @@ const Home = () => {
               key={idx}
               className="relative flex flex-col sm:flex-row bg-card rounded-2xl shadow-lg border border-border p-3 sm:p-2 gap-3 sm:gap-2 items-center transition-transform duration-200 group hover:scale-[1.02] cursor-pointer no-underline text-inherit"
               onMouseEnter={() => handleMouseEnter(idx, project.screenshots.length)}
-              onMouseLeave={() => handleMouseLeave(idx)}
+              onMouseLeave={() => handleMouseLeave(idx, project.previewTime ?? VIDEO_PREVIEW_TIME)}
             >
               {(() => {
                 const mediaSrc = project.screenshots && project.screenshots.length > 0 ? project.screenshots[screenshotIndexes[idx]].src : project.image;
                 const isVideo = typeof mediaSrc === 'string' && mediaSrc.toLowerCase().endsWith('.mp4');
+                const previewTime = project.previewTime ?? VIDEO_PREVIEW_TIME;
                 return isVideo ? (
                   <div className="relative w-full sm:w-72 h-48">
                     <video
-                      ref={(el) => {
-                        videoRefs.current[idx] = el;
-                        if (el) el.oncanplay = () => { try { el.currentTime = 6; } catch (_) {} };
-                      }}
-                      src={`${mediaSrc}#t=6`}
+                      ref={(el) => { videoRefs.current[idx] = el; }}
+                      src={`${mediaSrc}#t=${previewTime}`}
                       className="w-full h-full rounded-lg object-cover bg-muted border border-border"
                       muted
                       playsInline
-                      preload="auto"
+                      preload="metadata"
+                      onLoadedMetadata={(event) => showVideoPreviewFrame(event.currentTarget, previewTime)}
                       width="288"
                       height="192"
                     />
